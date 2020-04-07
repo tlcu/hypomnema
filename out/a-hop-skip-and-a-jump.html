@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A log used for keeping notes, analogous to a commonplace book">
+<title>A hop, skip, and a jump · Hypomnema</title>
+<link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAAGFBMVEVHcEyAgID////AwMD/AAAAAAAAAP+AAICQJsBxAAAAAXRSTlMAQObYZgAAAKlJREFUeAFVy7FNxjAURWEzgn8LUxMmsB/KAniANAwQRXp9qqyPr55Pwe3OJ9209pZTjH5tS+gvM4RGaIRGaBsjhP4e40fQj/TaDJj9OcEkuqizICQ6IEQNSNSARA3sLlHfAVbLPKiB/QLugHYuePICD3i4VC+CDy7N6yW4ufi5n/8urTRfF0G2Oc+6BPxKqusy+z0lyXwJZh9piXUa6TTSaaTTSKETQv8BDzBH24qFePAAAAAASUVORK5CYII=" rel="icon" type="image/png" />
+  <style type="text/css">html {
+margin: auto;
+max-width: 72em;
+}
+body, code {
+font-family:
+Inconsolata,
+Menlo,
+Consolas,
+Monaco,
+Liberation Mono,
+Lucida Console,
+monospace;
+font-size: 1.2em;
+margin: 1ex 1em;
+}
+h1, h2, h3, h4, h5, h6 {
+font-weight: normal;
+margin: 2ex auto;
+padding: 0;
+}
+time {
+color: dimgray;
+}
+img {
+max-width: 100%;
+}
+h1 img {
+display: block;
+float: left;
+padding: 0.25ex 0.5em 0 0;
+}
+a {
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+h1 a {
+color: black;
+}
+p, blockquote {
+font-family:
+-apple-system,
+BlinkMacSystemFont,
+'Segoe UI',
+Roboto,
+Oxygen,
+Ubuntu,
+Cantarell,
+'Fira Sans',
+'Droid Sans',
+'Helvetica Neue',
+Arial,
+sans-serif;
+line-height: 1.5;
+max-width: 34em;
+}
+figure {
+margin: 5ex 0;
+width: 100%;
+max-width: 40em;
+}
+em, figcaption {
+font-style: italic;
+font-family:
+'Iowan Old Style',
+'Apple Garamond',
+Baskerville,
+'Times New Roman',
+'Droid Serif',
+Times,
+'Source Serif Pro',
+serif,
+'Apple Color Emoji',
+'Segoe UI Emoji',
+'Segoe UI Symbol';
+}
+figcaption {
+text-align: right;
+}
+ul, ol {
+margin: 0 0 0 0.5em;
+padding: 0;
+}
+li {
+margin: 1ex 0 1ex 1em;
+}
+footer {
+margin: 10ex auto 5ex auto;
+}
+nav {
+display: flex;
+flex-wrap: wrap;
+}
+nav * {
+margin: 1ex 0;
+}
+nav a {
+padding: 0.5ex 1em;
+}
+nav a:first-child {
+margin-left: 0;
+}
+form {
+margin: auto 1em;
+}
+form input {
+font-size: 1rem;
+padding: 0.5ex 0.5em;
+}
+#search-bar {
+width: 20em;
+}
+code, table, blockquote {
+border: 1px solid gainsboro;
+display: inline-block;
+border-radius: 10px;
+background: whitesmoke;
+font-size: 0.9em;
+margin: 0;
+padding: 0.1ex 0.5em;
+}
+pre code {
+padding: 1ex 1em;
+}
+table {
+max-width: 100%;
+overflow: auto;
+}
+th, td {
+padding: 0.5ex 0.5em;
+}
+blockquote {
+padding: 0.5ex 0.5em;
+}
+</style>
+<header>
+  <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAAGFBMVEVHcEyAgID////AwMD/AAAAAAAAAP+AAICQJsBxAAAAAXRSTlMAQObYZgAAAKlJREFUeAFVy7FNxjAURWEzgn8LUxMmsB/KAniANAwQRXp9qqyPr55Pwe3OJ9209pZTjH5tS+gvM4RGaIRGaBsjhP4e40fQj/TaDJj9OcEkuqizICQ6IEQNSNSARA3sLlHfAVbLPKiB/QLugHYuePICD3i4VC+CDy7N6yW4ufi5n/8urTRfF0G2Oc+6BPxKqusy+z0lyXwJZh9piXUa6TTSaaTTSKETQv8BDzBH24qFePAAAAAASUVORK5CYII="><a href="/">Hypomnema</a></h1>
+</header>
+<main>
+<h2>A hop, skip, and a jump</h2>
+  <time datetime="2020-04-06">2020-04-06</time>
+<p>There’s many benefits to working from the command line. A terminal-centric workflow is broadly cross-platform, uses less system resources, is highly customizable, and most importantly <em>fast</em>. But only if you take a little time to get acquainted with the right tools. Take the example of moving up, down, and around the filesystem hierarchy:</p>
+<pre><code>$ cd example/one/two/
+$ pwd
+/home/user/example/one/two/
+$ cd three
+$ pwd
+/home/user/example/one/two/three
+$ cd a/b/c
+$ pwd
+/home/user/example/one/two/three/a/b/c
+$ cd
+$ pwd
+/home/user
+$ z c
+$ pwd
+/home/user/example/one/two/three/a/b/c
+$ z th
+$ pwd
+/home/user/example/one/two/three</code></pre>
+<p>Like tab-completion, autojump tools reduce command-line typing. Most work by remembering the most relevant and visited directories (sometimes through a <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Tech/Places/Frecency_algorithm">‘frecency’ algorithm</a>) and then making educated guesses about where the user wants to go. This is obviously functionality designed around interactive shell work and not meant for scripting. There are a number of utilities built around this concept:</p>
+<table>
+<thead>
+<tr class="header">
+<th>command</th>
+<th>language</th>
+<th>year first released</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://github.com/wting/autojump">autojump</a></td>
+<td>Python</td>
+<td>2009</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/whjvenyl/fasd">fasd</a></td>
+<td>Shell</td>
+<td>2011</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/rupa/z">z</a></td>
+<td>Shell</td>
+<td>2011</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/euank/pazi">pazi</a></td>
+<td>Rust</td>
+<td>2017</td>
+</tr>
+</tbody>
+</table>
+<p><code>pazi</code> got my attention because of it’s impressive <a href="https://github.com/euank/pazi/blob/master/docs/Benchmarks.md">benchmarks</a>. It also has support for using <a href="https://github.com/euank/pazi/blob/master/docs/usage/pipe.md">fuzzy-finders</a>, which are themselves very useful tools. A simple alias of the default jump key <code>z</code> to <code>j</code> makes the experience even more ergonomic. The hops don’t always land where expected, especially until the tool has had enough time to learn, but skipping around saves time and needless typing overall.</p>
+</main>
+<footer>
+  <nav>
+    <a href="/about">About</a>
+    <a href="/">Index</a>
+    <form id="search" method="GET" action="https://lite.qwant.com">
+      <input type="text" name="q" id="search-bar" value="site:hypomnema.net ">
+      <input type="hidden" name="l" value="en">
+      <input type="submit" name="btnG" value="Search">
+    </form>
+  </nav>
+</footer>
