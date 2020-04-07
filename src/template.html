@@ -4,24 +4,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="A log used for keeping notes, analogous to a commonplace book">
 <title>$title$ · $sitename$</title>
+$if(prod)$
+  <base href="/hypomnema/">
+$endif$
 <link rel='icon' type='image/png' href='favicon.png' />
-$for(css)$
-  <link rel='stylesheet' href='$css$'>
-$endfor$
+<link rel='stylesheet' href='style.css'>
 <header>
-  <h1><img src='favicon.png'><a href='/'>$sitename$</a></h1>
+  <h1><img src='favicon.png' alt="Lambda die"><a href='index'>$sitename$</a></h1>
 </header>
 <main>
 <h2>$title$</h2>
-$if(date)$
-  <time datetime='$date$'>$date$</time>
-$endif$
+<time datetime='$date$'>$date$</time>
 $body$
 </main>
 <footer>
   <nav>
-    <a href='/about'>About</a>
-    <a href='/'>Index</a>
+    <a href='about'>About</a>
+    <a href='index'>Index</a>
     <form id='search' method='GET' action='https://lite.qwant.com'>
       <input type='text' name='q' id='search-bar' value='site:hypomnema.net '>
       <input type='hidden' name='l' value='en'>

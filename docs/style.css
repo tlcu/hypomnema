@@ -1,0 +1,163 @@
+html {
+  margin: auto;
+  max-width: 72em;
+}
+
+body, code {
+  font-family:
+    Inconsolata,
+    Menlo,
+    Consolas,
+    Monaco,
+    Liberation Mono,
+    Lucida Console,
+    monospace;
+  font-size: 1.2em;
+  margin: 1ex 1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  margin: 2ex auto;
+  padding: 0;
+}
+
+time {
+  color: dimgray;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1 img {
+  display: block;
+  float: left;
+  padding: 0.25ex 0.5em 0 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1 a {
+  color: black;
+}
+
+p, blockquote {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  line-height: 1.5;
+  max-width: 34em;
+}
+
+figure {
+  margin: 5ex 0;
+  width: 100%;
+  max-width: 40em;
+}
+
+em, figcaption {
+  font-style: italic;
+  font-family:
+    'Iowan Old Style',
+    'Apple Garamond',
+    Baskerville,
+    'Times New Roman',
+    'Droid Serif',
+    Times,
+    'Source Serif Pro',
+    serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol';
+}
+
+figcaption {
+  text-align: right;
+}
+
+ul, ol {
+  margin: 0 0 0 0.5em;
+  padding: 0;
+}
+
+li {
+  margin: 1ex 0 1ex 1em;
+}
+
+footer {
+  margin: 10ex auto 5ex auto;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+nav * {
+  margin: 1ex 0;
+}
+
+nav a {
+  padding: 0.5ex 1em;
+}
+
+nav a:first-child {
+  margin-left: 0;
+}
+
+form {
+  margin: auto 1em;
+}
+
+form input {
+  font-size: 1rem;
+  padding: 0.5ex 0.5em;
+}
+
+#search-bar {
+  width: 20em;
+}
+
+code, table, blockquote {
+  border: 1px solid gainsboro;
+  display: inline-block;
+  border-radius: 10px;
+  background: whitesmoke;
+  font-size: 0.9em;
+  margin: 0;
+  padding: 0.1ex 0.5em;
+}
+
+pre code {
+  padding: 1ex 1em;
+}
+
+table {
+  max-width: 100%;
+  overflow: auto;
+}
+
+th, td {
+  padding: 0.5ex 0.5em;
+}
+
+blockquote {
+  padding: 0.5ex 0.5em;
+}

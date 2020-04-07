@@ -76,18 +76,18 @@ which I like, and `zenith` lets you move back and forth in time.  Below
 are screenshots of the tools ranked by how likely I am to use them, but none of
 the new Rust tools are bad choices. `top` isn't going anywhere just yet.
 
-![top](top.jpg)
+![top](top.jpg "top")
 
-![ytop](ytop.jpg)
+![ytop](ytop.jpg "ytop")
 
-![zenith](zenith.jpg)
+![zenith](zenith.jpg "zenith")
 
-![btm](btm.jpg)
+![btm](btm.jpg "btm")
 
-![htop](htop.jpg)
+![htop](htop.jpg "htop")
 
-![glances](glances.jpg)
+![glances](glances.jpg "glances")
 
-![gtop](gtop.jpg)
+![gtop](gtop.jpg "gtop")
 
-![vtop](vtop.jpg)
+![vtop](vtop.jpg "vtop")

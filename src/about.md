@@ -23,4 +23,4 @@ cf. [Wiktionary](https://en.wiktionary.org/wiki/%E1%BD%91%CF%80%CF%8C%CE%BC%CE%B
 >     4. a tablet used for keeping notes, analogous to a commonplace book
 > 3. draft, copy of a letter
 
-![Τὸ τοῦ Ἀριστοτέλους περὶ ἑρμηνείας ὑπόμνημα — Venice 1545](hypo-ammonius-hermeas.jpg)
+![Τὸ τοῦ Ἀριστοτέλους περὶ ἑρμηνείας ὑπόμνημα — Venice 1545](hypo-ammonius-hermeas.jpg "Hypomnema of Ammonius Hermeas")
