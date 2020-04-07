@@ -7,7 +7,7 @@ do
   name="$(basename -s .md "$draft")"
   pandoc \
     --css        style.css \
-    --output     ../out/"$name".html \
+    --output     ../docs/"$name".html \
     --self-contained \
     --standalone "$draft" \
     --template   template.html \

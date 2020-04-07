@@ -3,5 +3,5 @@ build: test
 test:
 	shellcheck build.sh
 dev: build
-	serve out &
+	serve docs &
 	fd . | entr -s './build.sh'
