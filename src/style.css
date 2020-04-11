@@ -1,3 +1,5 @@
+@import 'minified.css';
+
 html {
   margin: auto;
   max-width: 72em;
@@ -13,7 +15,6 @@ body, code {
     Lucida Console,
     monospace;
   font-size: 1.2em;
-  margin: 1ex 1em;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -27,7 +28,7 @@ time {
 }
 
 img {
-  max-width: 100%;
+  max-width: 40em;
 }
 
 h1 img {
@@ -36,16 +37,13 @@ h1 img {
   padding: 0.25ex 0.5em 0 0;
 }
 
-a {
+h1 a {
+  color: black;
   text-decoration: none;
 }
 
-a:hover {
+h1 a:hover {
   text-decoration: underline;
-}
-
-h1 a {
-  color: black;
 }
 
 p, blockquote {
@@ -62,43 +60,11 @@ p, blockquote {
     'Helvetica Neue',
     Arial,
     sans-serif;
-  line-height: 1.5;
   max-width: 34em;
 }
 
-figure {
-  margin: 5ex 0;
-  width: 100%;
-  max-width: 40em;
-}
-
-em, figcaption {
-  font-style: italic;
-  font-family:
-    'Iowan Old Style',
-    'Apple Garamond',
-    Baskerville,
-    'Times New Roman',
-    'Droid Serif',
-    Times,
-    'Source Serif Pro',
-    serif,
-    'Apple Color Emoji',
-    'Segoe UI Emoji',
-    'Segoe UI Symbol';
-}
-
-figcaption {
-  text-align: right;
-}
-
-ul, ol {
-  margin: 0 0 0 0.5em;
-  padding: 0;
-}
-
-li {
-  margin: 1ex 0 1ex 1em;
+code {
+  font-size: 1rem;
 }
 
 footer {
@@ -133,31 +99,4 @@ form input {
 
 #search-bar {
   width: 20em;
-}
-
-code, table, blockquote {
-  border: 1px solid gainsboro;
-  display: inline-block;
-  border-radius: 10px;
-  background: whitesmoke;
-  font-size: 0.9em;
-  margin: 0;
-  padding: 0.1ex 0.5em;
-}
-
-pre code {
-  padding: 1ex 1em;
-}
-
-table {
-  max-width: 100%;
-  overflow: auto;
-}
-
-th, td {
-  padding: 0.5ex 0.5em;
-}
-
-blockquote {
-  padding: 0.5ex 0.5em;
 }

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang='en'>
+<meta charset='utf-8'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A log used for keeping notes, analogous to a commonplace book">
+<title>One small step for man · Hypomnema</title>
+<link rel='icon' type='image/png' href='favicon.png' />
+<link rel='stylesheet' href='style.css'>
+<header>
+  <h1><img src='favicon.png' alt="Lambda die"><a href='index'>Hypomnema</a></h1>
+</header>
+<main>
+<h2>One small step for man</h2>
+<time datetime='2020-04-08'>2020-04-08</time>
+<p>‘Read the manual’—timeless and sage advice. But what about a summary? Can one hundred words be more useful than twenty thousand? Enough developers think so to write several alternatives to the classic Unix <code>man</code> and GNU <code>info</code> systems. A quick test lookup of documentation for <code>gpg</code> brought surprising results:</p>
+<table>
+<thead>
+<tr class="header">
+<th>command</th>
+<th>language</th>
+<th>birth year</th>
+<th>time (ms)</th>
+<th>words</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://www.unix.com/man-page-repository.php">man</a></td>
+<td>C</td>
+<td>1971</td>
+<td>81.53</td>
+<td>21884</td>
+</tr>
+<tr class="even">
+<td><a href="https://www.gnu.org/s/texinfo">info</a></td>
+<td>C, Perl</td>
+<td>1986</td>
+<td>70.86</td>
+<td>57676</td>
+</tr>
+<tr class="odd">
+<td><a href="https://tldr.sh">tldr</a></td>
+<td>Multiple</td>
+<td>2013</td>
+<td>8.31</td>
+<td>103</td>
+</tr>
+<tr class="even">
+<td><a href="http://bropages.org">bro</a></td>
+<td>Ruby</td>
+<td>2014</td>
+<td>351.17</td>
+<td>308</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/cheat/cheat">cheat</a></td>
+<td>Go</td>
+<td>2014</td>
+<td>99.92</td>
+<td>525</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/srsudar/eg">eg</a></td>
+<td>Python</td>
+<td>2015</td>
+<td>103.64</td>
+<td>357</td>
+</tr>
+<tr class="odd">
+<td><a href="https://cheat.sh">cheat.sh</a></td>
+<td>Python</td>
+<td>2017</td>
+<td>141.84</td>
+<td>91</td>
+</tr>
+</tbody>
+</table>
+<p>So this was a blowout, with <code>tldr</code> running away with performance. Even though the ‘official’ client is written in JavaScript, there are Ruby, Haskell, Perl, Python, C++, Rust, Bash, and Go clients available. I had no idea that my package manager had installed the C++ client by default. There’s also a web application, Dash integration, and an iOS app available. The silver medal goes to the <code>cheat.sh</code> service which requires only internet access: a very interesting approach that will no doubt be useful wherever applications cannot be installed. <code>bro</code> kept throwing weird warnings and <code>eg</code> did not have <code>gpg</code> in it’s knowledge base, so I would not recommend them. <code>cheat</code> offers users an easy way to add their own content in custom ‘cheat-sheets’, with the ‘community’ cheat-sheet being little more than a default source. Honestly, I never really use <code>info</code> pages. Interestingly, colorless and ancient <code>man</code> still has the best formatting of them all:</p>
+<figure>
+<img src="man.jpg" title="man" alt="" /><figcaption>man</figcaption>
+</figure>
+<figure>
+<img src="tldr.jpg" title="tldr" alt="" /><figcaption>tldr</figcaption>
+</figure>
+<figure>
+<img src="bro.jpg" title="bro" alt="" /><figcaption>bro</figcaption>
+</figure>
+<figure>
+<img src="cheat.jpg" title="cheat" alt="" /><figcaption>cheat</figcaption>
+</figure>
+<figure>
+<img src="eg.jpg" title="eg" alt="" /><figcaption>eg</figcaption>
+</figure>
+<figure>
+<img src="cheat-sh.jpg" title="cheat-sh" alt="" /><figcaption>cheat-sh</figcaption>
+</figure>
+</main>
+<footer>
+  <nav>
+    <a href='about'>About</a>
+    <a href='index'>Index</a>
+    <form id='search' method='GET' action='https://lite.qwant.com'>
+      <input type='text' name='q' id='search-bar' value='site:hypomnema.net '>
+      <input type='hidden' name='l' value='en'>
+      <input type='submit' name='btnG' value='Search'>
+    </form>
+  </nav>
+</footer>

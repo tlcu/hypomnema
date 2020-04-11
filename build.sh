@@ -1,6 +1,6 @@
 #!/bin/sh
-
 cd src || exit
+cp ../node_modules/unfashionable/minified.css .
 cp ./*.jpg* ./*.png* ./*.css* ../docs
 for draft in *.md
 do
@@ -9,5 +9,6 @@ do
     --output     ../docs/"$name".html \
     --standalone "$draft" \
     --template   template.html \
-    --metadata sitename='Hypomnema'
+    --metadata sitename='Hypomnema' \
+    --metadata prod="$1"
 done
