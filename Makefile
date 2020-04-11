@@ -5,5 +5,3 @@ build: test
 dev: build
 	serve docs &
 	fd . | entr -s './build.sh'
-prod: test
-	./build.sh 1

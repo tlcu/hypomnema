@@ -9,6 +9,5 @@ do
     --output     ../docs/"$name".html \
     --standalone "$draft" \
     --template   template.html \
-    --metadata sitename='Hypomnema' \
-    --metadata prod="$1"
+    --metadata sitename='Hypomnema'
 done
