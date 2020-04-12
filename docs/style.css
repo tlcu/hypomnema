@@ -1,5 +1,11 @@
 @import 'minified.css';
 
+@font-face {
+  font-family: Inconsolata;
+  src: url(inconsolata.woff) format(woff);
+  font-weight: normal;
+}
+
 html {
   margin: auto;
   max-width: 72em;
@@ -14,13 +20,20 @@ body, code {
     Liberation Mono,
     Lucida Console,
     monospace;
-  font-size: 1.2em;
+  line-height: 1.35;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
+}
+
+h1 {
+  font-size: 1.8em;
+  margin: 1ex auto;
+}
+
+h2 {
   margin: 2ex auto;
-  padding: 0;
 }
 
 time {
@@ -39,11 +52,10 @@ h1 img {
 
 h1 a {
   color: black;
-  text-decoration: none;
 }
 
 h1 a:hover {
-  text-decoration: underline;
+  color: blue;
 }
 
 p, blockquote {
@@ -60,7 +72,6 @@ p, blockquote {
     'Helvetica Neue',
     Arial,
     sans-serif;
-  max-width: 34em;
 }
 
 code {
@@ -99,4 +110,9 @@ form input {
 
 #search-bar {
   width: 20em;
+}
+
+pre code {
+  margin: 0;
+  padding: 0;
 }

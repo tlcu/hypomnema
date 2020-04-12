@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang='en'>
+<meta charset='utf-8'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A log used for keeping notes, analogous to a commonplace book">
+<title>Rusting tools · Hypomnema</title>
+<link rel='icon' type='image/png' href='favicon.png' />
+<link rel='stylesheet' href='style.css'>
+<header>
+  <h1><img src='favicon.png' alt="Lambda die"><a href='index'>Hypomnema</a></h1>
+</header>
+<main>
+<h2>Rusting tools</h2>
+<time datetime='2020-04-12'>2020-04-12</time>
+<p>There are many classic command line tools known for their gotchas. The flags for some are <a href="https://xkcd.com/1168/">famously</a> cryptic, and deep in the heart of Unix lie <a href="https://wiki.c2.com/?EdIsTheStandardTextEditor">arcana</a> indeed. A few Rust developers have decided to refresh the scene with new attempts at solving these epoch-old problems. These new tools are not likely to displace programs that have decades of use in production behind them, but they can make working in the terminal far more ergonomic:</p>
+<table>
+<thead>
+<tr class="header">
+<th>old skool</th>
+<th>new school</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cat</td>
+<td><a href="https://github.com/sharkdp/bat">bat</a></td>
+</tr>
+<tr class="even">
+<td>find</td>
+<td><a href="https://github.com/sharkdp/fd">fd</a></td>
+</tr>
+<tr class="odd">
+<td>grep</td>
+<td><a href="https://github.com/BurntSushi/ripgrep">ripgrep</a></td>
+</tr>
+<tr class="even">
+<td>less</td>
+<td><a href="https://github.com/sharkdp/bat">bat</a></td>
+</tr>
+<tr class="odd">
+<td>ls</td>
+<td><a href="https://the.exa.website/">exa</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="finding-a-new-way">Finding a new way</h3>
+<p>Consider the case of the venerable <code>find</code>. Which of these two commands is more intuitive?</p>
+<pre><code>############
+# Option 1 #
+############
+$ find . -name &#39;*.md&#39;
+./node_modules/unfashionable/README.md
+./README.md
+./src/one-small-step-for-man.md
+./src/spinning-tops.md
+./src/a-hop-skip-and-a-jump.md
+./src/index.md
+./src/about.md
+############
+# Option 2 #
+############
+$ find --extension md
+README.md
+src/a-hop-skip-and-a-jump.md
+src/about.md
+src/index.md
+src/one-small-step-for-man.md
+src/spinning-tops.md</code></pre>
+<p>Option 1 specifies the target directory, uses a single-hyphen but word-length flag, then takes a quoted glob. Option 1 also searches everywhere, including in the <code>node_modules/</code> directory. Finally, Option 1 prepends <code>./</code> on all the output. Option 2 takes a double-hyphen word argument and the extension to search for. It colors directories like <code>ls</code>, simplifies output and ignores whatever is in the project’s <code>.gitignore</code> file. Option 1 is the classic <code>find</code> utility, and Option 2 is the new <code>fd</code>. As the <a href="https://github.com/sharkdp/fd">README</a> puts it:</p>
+<blockquote>
+<p>fd is a simple, fast and user-friendly alternative to find.</p>
+<p>While it does not seek to mirror all of find’s powerful functionality, it provides sensible (opinionated) defaults for 80% of the use cases.</p>
+</blockquote>
+<p>For any interactive use, <code>fd</code> is a clear winner.</p>
+<h3 id="theory-of-cats">Theory of cats</h3>
+<p>Does it matter if a <code>cat</code> black and white?</p>
+<figure>
+<img src="cat.jpg" title="$ cat style.css" alt="" /><figcaption>cat</figcaption>
+</figure>
+<figure>
+<img src="bat.jpg" title="$ bat style.css" alt="" /><figcaption>bat</figcaption>
+</figure>
+<p><code>bat</code> is more functional, easier to read, more flexible, and only 1ms slower than classic <code>cat</code>. Turning once again to the project’s <a href="https://github.com/sharkdp/bat#project-goals-and-alternatives">README</a>:</p>
+<blockquote>
+<p>bat tries to achieve the following goals:</p>
+<ul>
+<li>Provide beautiful, advanced syntax highlighting</li>
+<li>Integrate with Git to show file modifications</li>
+<li>Be a drop-in replacement for (POSIX) cat</li>
+<li>Offer a user-friendly command-line interface</li>
+</ul>
+</blockquote>
+<p><code>bat</code> can also serve as <code>$PAGER</code>, replacing <code>more</code> or <code>less</code>:</p>
+<figure>
+<img src="less.jpg" title="$ less style.css" alt="" /><figcaption>less</figcaption>
+</figure>
+<h3 id="listless-lists">Listless lists</h3>
+<p>And yes, even <code>ls</code> has been improved:</p>
+<figure>
+<img src="lsla.jpg" title="$ ls -la" alt="" /><figcaption>ls</figcaption>
+</figure>
+<figure>
+<img src="exala.jpg" title="$ exa -la" alt="" /><figcaption>exa</figcaption>
+</figure>
+<p>A final <a href="https://the.exa.website/" title="The exa website">blurb</a>:</p>
+<blockquote>
+<p>You list files hundreds of times a day. Why spend your time squinting at black and white text?</p>
+<p>exa is an improved file lister with more features and better defaults. It uses colours to distinguish file types and metadata. It knows about symlinks, extended attributes, and Git. And it’s small, fast, and just one single binary.</p>
+</blockquote>
+<h3 id="r.i.p-grep">R.I.P grep</h3>
+<p>Searching at the command line has lots of alternatives. <code>ripgrep</code> <a href="https://blog.burntsushi.net/ripgrep/#anti-pitch">blows them away</a>. The project documents the features and advantages so extensively that for the sake of time, just go <a href="https://github.com/BurntSushi/ripgrep">try it out</a>:</p>
+<figure>
+<img src="grep-directory.jpg" title="$ grep -RI 2em ." alt="" /><figcaption>grep</figcaption>
+</figure>
+<figure>
+<img src="ripgrep-directory.jpg" title="$ rg 2em" alt="" /><figcaption>ripgrep</figcaption>
+</figure>
+<h3 id="round-up">Round-up</h3>
+<p>These new tools require no configuration, get out of the user’s way, and are broadly compatible with the standard programs they replace. I’ve gone so far as to alias most of the old to the new, and in about a year of working with them I’ve had no issues. For developers in particular, the <code>git</code> integrations and streamlined flags alone are worth switching.</p>
+</main>
+<footer>
+  <nav>
+    <a href='about'>About</a>
+    <a href='index'>Index</a>
+    <form id='search' method='GET' action='https://lite.qwant.com'>
+      <input type='text' name='q' id='search-bar' value='site:hypomnema.net '>
+      <input type='hidden' name='l' value='en'>
+      <input type='submit' name='btnG' value='Search'>
+    </form>
+  </nav>
+</footer>
