@@ -1,0 +1,72 @@
+---
+title: Contact
+...
+
+All content on this website is published under the 
+[Creative Commons Attribution 4.0 International] license.
+
+The source code for the site can be found on my [GitHub] page,
+and is open-source under the [Zero-Clause BSD] license.
+
+I can be reached at `t` no space `l` no space `culverwell` at `mailbox` dot `org`.
+This is my [GPG] public [key]:
+
+```
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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
+WcKEtB7xpMv8yz3V1fBdgwR8HKznL6pv
+=Qqb7
+-----END PGP PUBLIC KEY BLOCK-----
+```
+[Zero-Clause BSD]: https://opensource.org/licenses/0BSD
+[GitHub]: https://github.com/tlcu/hypomnema
+[GPG]: https://gnupg.org/
+[key]: https://en.wikipedia.org/wiki/Public-key_cryptography
+[Creative Commons Attribution 4.0 International]: https://creativecommons.org/licenses/by/4.0/

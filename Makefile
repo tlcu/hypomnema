@@ -1,7 +1,4 @@
 test:
-	shellcheck build.sh
+	shellcheck bin/*.sh
 build: test
-	./build.sh
-dev: build
-	serve docs &
-	fd . | entr -s './build.sh'
+	./bin/build-all.sh
