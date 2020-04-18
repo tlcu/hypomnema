@@ -113,13 +113,13 @@ Postliberal nationalism has emerged globally, encouraged by Russia's example. Bu
 > among the Asian population," says Gorbunov's colleague Genady Kovalov. "The
 > danger is real, that's why we started the patrols."
 
-['Fortress Russia'](https://www.chathamhouse.org/expert/comment/covid-19-world-russia-sticks-international-distancing) seems to have avoided early infections by shutting the Asian frontier, only to later import the virus [from Italy](https://edition.cnn.com/2020/03/21/europe/putin-coronavirus-russia-intl/index.html). As with [China](https://thefederalist.com/2020/03/23/why-on-earth-should-anyone-believe-communist-chinas-coronavirus-statistics/), there have been [accusations](https://www.independent.co.uk/news/world/europe/coronavirus-russia-cases-pneumonia-deaths-putin-kremlin-fake-news-a9415771.html) that the Kremlin tampers with official statistics. It remains to be seen whether such claims will affect public perception in either case. Russia could be a case study in failed quarantine if the European outbreak is not quickly contained.
+['Fortress Russia'](https://www.chathamhouse.org/expert/comment/covid-19-world-russia-sticks-international-distancing) seems to have avoided early infections by shutting the Asian frontier, only to later import the virus [from Italy](https://edition.cnn.com/2020/03/21/europe/putin-coronavirus-russia-intl/index.html). As with [China](https://thefederalist.com/2020/03/23/why-on-earth-should-anyone-believe-communist-chinas-coronavirus-statistics/), there have been [accusations](https://www.independent.co.uk/news/world/europe/coronavirus-russia-cases-pneumonia-deaths-putin-kremlin-fake-news-a9415771.html) that the Kremlin tampers with official statistics. It remains to be seen whether such claims will affect public perception in either case. Russia could become a case study in failed quarantine if the European outbreak is not quickly contained.
 
 ### Counterexamples and counterarguments
 
 1. What about Taiwan?
 
-Of course, the cases of [Brazil](https://www.reuters.com/article/us-health-coronavirus-brazil-idUSKCN21V149), [Hong Kong](https://edition.cnn.com/2020/03/23/asia/hong-kong-coronavirus-quarantine-intl-hnk/index.html), and [Iran](https://www.latimes.com/world-nation/story/2020-02-25/how-iran-became-a-hot-zone-for-coronavirus-in-middle-east) have been cited by liberal apologists as evidence that the above argument is specious. This objection fails to see past official ideology. Taiwan may be a friend of liberalism, but even [sympathetic descriptions](https://www.wired.com/story/taiwan-is-beating-the-coronavirus-can-the-us-do-the-same/) make the island sound like a reactionary fantasy:
+Of course, the cases of [Brazil](https://www.reuters.com/article/us-health-coronavirus-brazil-idUSKCN21V149), [Hong Kong](https://edition.cnn.com/2020/03/23/asia/hong-kong-coronavirus-quarantine-intl-hnk/index.html), and [Iran](https://www.latimes.com/world-nation/story/2020-02-25/how-iran-became-a-hot-zone-for-coronavirus-in-middle-east) have been cited by liberal apologists as against that the obvious argument sketched so far. This objection fails to see past official ideology. Taiwan may be a friend of liberalism, but even [sympathetic descriptions](https://www.wired.com/story/taiwan-is-beating-the-coronavirus-can-the-us-do-the-same/) make the island sound like a reactionary fantasy:
 
 > Because of the opposition of the People’s Republic of China, Taiwan is not a member of the United Nations or the World Health Organization, a fact that may paradoxically have contributed to Taiwanese faith in their own government, according to Patrick Tung, a native of Taiwan and a specialist in Song dynasty history. “The reality of being isolated from global organizations,” wrote Tung, “also makes Taiwanese very aware of the publicity of its success in handling a crisis like this. The more coverage from foreign media, the more people feel confident in government policy and social mobilization.”
 
@@ -148,8 +148,8 @@ guarantee that the coronavirus will not recur seasonally, and emergency
 measures have been repeatedly extended already. The Western case for open
 borders was a tough sell before the pandemic. After---whatever that means---we
 will see increasing support for national sovereignty, border controls, and
-withdrawal from liberal-international institutions like the EU and the WHO.
-The virus will spur the movements behind Bolsonaro, Brexit, and Trump.  The
+retreat from liberal-international institutions like the EU and the WHO.
+The virus will spur the movements behind Orbán, Brexit, and Trump.  The
 international scene will continue to polarize. Tensions between the United
 States and China will continue to escalate. The crisis will split apart cases
 typically twinned: Hungary and Brazil seem to be headed down very different

@@ -11,7 +11,6 @@ body {
     'Cantarell',
     'Lucida Grande',
     sans-serif;
-  font-size: 1.1em;
   line-height: 1.5;
   margin: 1ex auto 10ex auto;
   max-width: 50em;
@@ -280,8 +279,8 @@ figcaption {
   margin-top: -2ex;
 }
 
-code, figure, img, pre, table {
-  font-size: 1rem;
+figcaption, img, pre, table {
+  font-size: 0.8em;
 }
 
 figure, img, pre, table {
@@ -305,10 +304,6 @@ pre code {
   padding: 2ex 1em;
   white-space: pre;
 
-}
-
-figcaption {
-  text-align: right;
 }
 
 footer {
@@ -351,7 +346,13 @@ ul {
   padding: 0;
 }
 
-#results li:before {
+#results li:before, figcaption:before {
   color: silver;
   content: '↳ ';
+}
+
+@media only screen and (min-device-width: 1000px) {
+  body {
+    font-size: 1.25em;
+  }
 }
