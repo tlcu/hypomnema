@@ -2,7 +2,7 @@
 <feed xmlns='http://www.w3.org/2005/Atom'>
   <title>Hypomnema</title>
   <link href='http://www.hypomnema.net/'/>
-  <updated>2020-04-20T18:03:33Z</updated>
+  <updated>2020-04-20T18:26:47Z</updated>
   <author>
     <name>Thomas Lee Culverwell</name>
   </author>
@@ -11,7 +11,7 @@
     <title>Spinning tops</title>
     <link href='https://hypomnema.net/spinning-tops'/>
     <id>https://hypomnema.net/spinning-tops</id>
-    <updated>2020-04-20T18:03:36Z</updated>
+    <updated>2020-04-20T18:26:47Z</updated>
     <summary>System monitoring is useful whether on a home desktop, workstation, or
 server. The classic Unix program top defines the standard interface: an
 interactive, filterable, running tally of what is hogging how many
@@ -23,7 +23,7 @@ competition:</summary>
     <title>A hop, skip, and a jump</title>
     <link href='https://hypomnema.net/a-hop-skip-and-a-jump'/>
     <id>https://hypomnema.net/a-hop-skip-and-a-jump</id>
-    <updated>2020-04-20T18:03:36Z</updated>
+    <updated>2020-04-20T18:26:47Z</updated>
     <summary>There’s many benefits to working from the command line. A
 terminal-centric workflow is broadly cross-platform, uses less system
 resources, is highly customizable, and most importantly fast. But only
@@ -35,7 +35,7 @@ the example of moving up, down, and around the filesystem hierarchy:</summary>
     <title>One small step for man</title>
     <link href='https://hypomnema.net/one-small-step-for-man'/>
     <id>https://hypomnema.net/one-small-step-for-man</id>
-    <updated>2020-04-20T18:03:35Z</updated>
+    <updated>2020-04-20T18:26:46Z</updated>
     <summary>‘Read the manual’—timeless and sage advice. But what about a summary?
 Can one hundred words be more useful than twenty thousand? Enough
 developers think so to write several alternatives to the classic Unix
@@ -47,7 +47,7 @@ brought surprising results:</summary>
     <title>Rusting tools</title>
     <link href='https://hypomnema.net/rusting-tools'/>
     <id>https://hypomnema.net/rusting-tools</id>
-    <updated>2020-04-20T18:03:36Z</updated>
+    <updated>2020-04-20T18:26:46Z</updated>
     <summary>There are many classic command line tools known for their gotchas. The
 flags for some are famously cryptic, and arcana rest buried in the heart
 of Unix. A few Rust developers have decided to refresh the scene with
@@ -61,7 +61,7 @@ ergonomic:</summary>
     <title>Dead reckoning</title>
     <link href='https://hypomnema.net/dead-reckoning'/>
     <id>https://hypomnema.net/dead-reckoning</id>
-    <updated>2020-04-20T18:03:35Z</updated>
+    <updated>2020-04-20T18:26:46Z</updated>
     <summary>  The happiest changes that have happened among the nations have usually
   been bought by bloody catastrophes of which innocence was the victim.</summary>
     <content type='html' src='https://hypomnema.net/dead-reckoning'></content>

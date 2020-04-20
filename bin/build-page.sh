@@ -1,6 +1,6 @@
 #!/bin/sh
-# metadata
 
+# metadata
 filename="$(basename "$1" .md)"
 title="$(grep title "$1" | cut -d ' ' -f 2-)"
 edited="$(awk '/edited:/ {print $2; exit}' "$1")"
