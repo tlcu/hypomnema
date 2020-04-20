@@ -1,5 +1,6 @@
 ---
 title: About
+edited: 2020-04-05
 ...
 
 cf. [Wiktionary](https://en.wiktionary.org/wiki/%E1%BD%91%CF%80%CF%8C%CE%BC%CE%BD%CE%B7%CE%BC%CE%B1):

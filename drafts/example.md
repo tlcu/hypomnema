@@ -1,5 +1,6 @@
 ---
 title: Example page
+edited: 01-01-01
 ...
 
 Lorem ipsum dolor si amet.

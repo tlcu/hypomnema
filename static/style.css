@@ -318,7 +318,9 @@ footer {
 }
 
 footer p {
-  min-width: 5em;
+  display: inline-block;
+  min-width: 3em;
+  text-align: center;
 }
 
 footer p a {
