@@ -207,7 +207,7 @@ blockquote {
   padding: 1ex 1em 1ex 2em;
 }
 
-blockquote, em, footer {
+blockquote, em {
   font-family:
    'Iowan Old Style',
    'Apple Garamond',
@@ -249,7 +249,7 @@ table tr:nth-child(odd) td {
   background: whitesmoke;
 }
 
-.sitename, code, figure, img, pre, table {
+.sitename, code, footer, figure, img, pre, table {
   font-family:
     'Inconsolata',
     'Fira Mono',
@@ -311,8 +311,8 @@ footer {
   border-top: 1px solid silver;
   color: dimgray;
   display: flex;
+  font-size: 1rem;
   flex-wrap: wrap;
-  font-style: italic;
   justify-content: space-between;
   margin: 10ex 0 2ex 0;
   padding-top: 1ex;
@@ -330,6 +330,17 @@ footer p a {
 
 footer p a:hover {
   text-decoration: none;
+}
+
+footer svg {
+  filter: grayscale(100%);
+  opacity: 0.5;
+  height: 2.5ex;
+}
+
+footer svg:hover {
+  filter: grayscale(0%);
+  opacity: 1;
 }
 
 ul {
