@@ -1,6 +1,16 @@
 <div class='categories'>
+<!--
+<div class='category'>
+## Philosophy
+* [Ignatius: _Smyrnaeans_](rusting-tools)
+* [Ignatius: _Ephesians_](rusting-tools)
+* [Ignatius: _Magnesians_](rusting-tools)
+* [Ignatius: _Romans_](rusting-tools)
+</div>
+-->
 <div class='category'>
 ## Politics
+* [If you like your app, you can keep it!](if-you-like-your-app)
 * [Dead reckoning](dead-reckoning)
 </div>
 <div class='category'>

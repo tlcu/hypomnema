@@ -3,6 +3,11 @@ title: About
 edited: 2020-04-05
 ...
 
+> We should see to it that whatever we have absorbed should not be allowed to remain unchanged, or it will not be part of us. We must digest it; otherwise it will merely enter the memory and not the reasoning power.
+>
+> _--- Seneca_
+
+
 cf. [Wiktionary](https://en.wiktionary.org/wiki/%E1%BD%91%CF%80%CF%8C%CE%BC%CE%BD%CE%B7%CE%BC%CE%B1):
 
 > ### Etymology

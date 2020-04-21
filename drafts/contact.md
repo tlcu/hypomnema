@@ -3,11 +3,11 @@ title: Contact
 edited: 2020-04-18
 ...
 
-All content on this website is published under the 
-[Creative Commons Attribution 4.0 International] license.
-
-The source code for the site can be found on my [GitHub] page,
-and is open-source under the [Zero-Clause BSD] license.
+All content on this website (unless otherwise noted) is written and published
+by Thomas Lee Culverwell under the [Creative Commons Attribution 4.0
+International] license. The source code for the site can be found on my
+[GitHub] page, and is open-source under the [Zero-Clause BSD] license.
+Put simply: do what you like with my code, but give me credit for my writing.
 
 I can be reached at `t` no space `l` no space `culverwell` at `mailbox` dot `org`.
 This is my [GPG] public [key]:

@@ -1,3 +1,4 @@
+.PHONY: pages static test
 test:
 	shellcheck bin/*.sh
 static:
