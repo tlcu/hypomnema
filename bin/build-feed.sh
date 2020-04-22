@@ -7,7 +7,7 @@ today="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 cat > docs/feed.atom << EOF
 <?xml version='1.0' encoding='utf-8'?>
 <feed xmlns='http://www.w3.org/2005/Atom'>
-  <title>Hypomnema</title>
+  <title>hypomnema</title>
   <link href='http://www.hypomnema.net/'/>
   <updated>$today</updated>
   <author>
