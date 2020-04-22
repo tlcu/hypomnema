@@ -46,7 +46,7 @@ h4, h5, h6 {
   display: flex;
   margin-top: 3ex;
   flex-wrap: wrap;
-  align-content: space-between;
+  justify-content: space-between;
 }
 
 .category h1,
@@ -55,11 +55,11 @@ h4, h5, h6 {
 .category h4,
 .category h5,
 .category h6 {
-  margin: 2ex auto 1ex;
+  margin: 2ex auto 1ex auto;
 }
 
 .category {
-  min-width: 30%;
+  margin: 0 1ex 1em 0;
 }
 
 @keyframes glitch { 
@@ -185,7 +185,6 @@ h4, h5, h6 {
 
 .global-nav a:hover, .search input:hover, .search input:hover::placeholder {
   border-color: blue;
-  box-shadow: 1px 1px blue;
   color: blue;
   cursor: pointer;
   text-decoration: none;
@@ -311,37 +310,23 @@ footer {
   border-top: 1px solid silver;
   color: dimgray;
   display: flex;
-  font-size: 1rem;
   flex-wrap: wrap;
+  font-size: 1rem;
   justify-content: space-between;
   margin: 10ex 0 2ex 0;
   padding-top: 1ex;
 }
 
-footer p {
-  display: inline-block;
-  min-width: 3em;
-  text-align: center;
-}
-
-footer p a {
-  color: gray;
-}
-
-footer p a:hover {
-  text-decoration: none;
-}
-
-footer svg {
+footer a img {
   filter: grayscale(100%);
   opacity: 0.5;
-  height: 2.5ex;
 }
 
-footer svg:hover {
+footer a img:hover {
   filter: grayscale(0%);
   opacity: 1;
 }
+
 
 ul {
   list-style-type: square;

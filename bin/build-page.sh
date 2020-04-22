@@ -23,7 +23,7 @@ jq ". += [$object]" tmp.json > static/index.json
 rm tmp.json
 
 pandoc --standalone "$1"                                                    \
-       --template   templates/default.html                                  \
+       --template   templates/new.htm                                       \
        --css        style.css                                               \
        --metadata   author='Thomas Lee Culverwell'                          \
        --metadata   date="$edited"                                          \
