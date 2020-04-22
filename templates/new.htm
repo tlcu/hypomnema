@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang='en'>
+<meta charset='utf-8' />
+<meta name='viewport'
+      content='width=device-width, initial-scale=1.0, user-scalable=yes' />
+<title>hypomnemae $if(title)$ – $title$$endif$</title>
+<link rel='icon' type='image/x-icon' href='favicon.ico' />
+<link rel='alternate'
+      type='application/atom+xml'
+      title='Atom'
+      href='http://hypomnema.net/feed.atom'>
+
+$for(css)$
+  <link rel='stylesheet' href='$css$' />
+$endfor$
+
+<header id='title-block-header'>
+  <h1 class='sitename'>$sitename$</h1>
+  <nav class='global-nav'>
+    <a href='/'>Home</a>
+    <a href='about'>About</a>
+    <a href='contact'>Contact</a>
+  </nav>
+  <div class='search'>
+    <input type='text' id='query' onkeyup='doSearch()' placeholder='Search'>
+    <ul id='results'>
+    </ul>
+  </div>
+</header>
+
+<main>
+$if(title)$<h2 class='title'>$title$</h2>$endif$
+$body$
+</main>
+
+<footer>
+  <a href='https://creativecommons.org/licenses/by/4.0/'>
+    <img alt='Creative Commons license' src='cc.svg'>
+  </a>
+  $if(date)$<p class='date'>Last modified: $date$</p>$endif$
+  <a href='/feed.atom'>
+    <img alt='Atom feed' src='feed.svg'>
+  </a>
+</footer>
+
+<script type='module'>
+  import { search, default as init } from './tinysearch_engine.js';
+  window.search = search;
+
+  async function run() {
+    await init('./tinysearch_engine_bg.wasm');
+  }
+
+  run();
+</script>
+
+<script>
+  function doSearch() {
+    let value = document.getElementById('query').value;
+    const arr = search(value, 10);
+    let ul = document.getElementById('results');
+    ul.innerHTML = '';
+
+    for (i = 0; i < arr.length; i++) {
+      var li = document.createElement('li');
+
+      let elem = arr[i];
+      let elemlink = document.createElement('a');
+      elemlink.innerHTML = elem[0];
+      elemlink.setAttribute('href', elem[1]);
+      li.appendChild(elemlink);
+
+      ul.appendChild(li);
+    }
+  }
+</script>
