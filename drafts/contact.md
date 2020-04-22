@@ -50,6 +50,6 @@ QzU=
 
 [Zero-Clause BSD]: https://opensource.org/licenses/0BSD
 [GitHub]: https://github.com/tlcu/hypomnema
-[GPG]: https://gnupg.org/
+[PGP]: https://gnupg.org/
 [key]: https://en.wikipedia.org/wiki/Public-key_cryptography
 [Creative Commons Attribution 4.0 International]: https://creativecommons.org/licenses/by/4.0/

@@ -31,15 +31,16 @@ h4, h5, h6 {
 }
 
 .sitename {
+  color: black;
   font-size: 1.75em;
   font-weight: normal;
   letter-spacing: 0.2em;
   margin: 2ex auto 1ex auto;
-  /* animation: glitch 3s steps(100) infinite; */
 }
 
 .sitename:before {
   content: '䷿';
+  padding-right: 0.25em;
 }
 
 .categories {
