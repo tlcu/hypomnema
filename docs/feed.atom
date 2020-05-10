@@ -2,7 +2,7 @@
 <feed xmlns='http://www.w3.org/2005/Atom'>
   <title>hypomnema</title>
   <link href='http://www.hypomnema.net/'/>
-  <updated>2020-04-22T20:24:09Z</updated>
+  <updated>2020-05-10T15:14:32Z</updated>
   <author>
     <name>Thomas Lee Culverwell</name>
   </author>
@@ -11,43 +11,441 @@
     <title>Spinning tops</title>
     <link href='https://hypomnema.net/spinning-tops'/>
     <id>https://hypomnema.net/spinning-tops</id>
-    <updated>2020-04-22T20:24:09Z</updated>
+    <updated>2020-05-10T15:14:32Z</updated>
     <summary>System monitoring is useful whether on a home desktop, workstation, or
 server. The classic Unix program top defines the standard interface: an
 interactive, filterable, running tally of what is hogging how many
 resources. But in the decades since release, top faces increasing
 competition:</summary>
-    <content type='html' src='https://hypomnema.net/spinning-tops'></content>
+    <content type='text/html'>
+      &lt;main&gt;
+&lt;h2 class='title'&gt;Spinning tops&lt;/h2&gt;
+&lt;p&gt;System monitoring is useful whether on a home desktop, workstation, or server. The classic Unix program &lt;code&gt;top&lt;/code&gt; defines the standard interface: an interactive, filterable, running tally of what is hogging how many resources. But in the decades since release, &lt;code&gt;top&lt;/code&gt; faces increasing competition:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class="header"&gt;
+&lt;th&gt;command&lt;/th&gt;
+&lt;th&gt;year&lt;/th&gt;
+&lt;th&gt;language&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;a href="https://sourceforge.net/projects/unixtop/"&gt;top&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;1984&lt;/td&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;a href="https://hisham.hm/htop/"&gt;htop&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;2004&lt;/td&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;a href="https://nicolargo.github.io/glances/"&gt;glances&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;2011&lt;/td&gt;
+&lt;td&gt;Python&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;a href="https://github.com/MrRio/vtop"&gt;vtop&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;2014&lt;/td&gt;
+&lt;td&gt;JavaScript&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;a href="https://github.com/aksakalli/gtop"&gt;gtop&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;2017&lt;/td&gt;
+&lt;td&gt;JavaScript&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;a href="https://github.com/ClementTsang/bottom"&gt;btm&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;2019&lt;/td&gt;
+&lt;td&gt;Rust&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;a href="https://github.com/bvaisvil/zenith"&gt;zenith&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;2019&lt;/td&gt;
+&lt;td&gt;Rust&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;a href="https://github.com/cjbassi/ytop"&gt;ytop&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;2020&lt;/td&gt;
+&lt;td&gt;Rust&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;What do these competitors offer? Mostly a better interface. For a long time &lt;code&gt;htop&lt;/code&gt; ruled the roost, but doesn’t necessarily play well with terminal colors. The way &lt;code&gt;htop&lt;/code&gt; graphs its data is also… rudimentary. But it’s well-known and supported, so I used it &lt;a href="https://www.wezm.net/v2/posts/2020/rust-top-alternatives/"&gt;until recently&lt;/a&gt; I discovered that Rust developers had been working on replacements. To decide which of these alternatives is truly worthy, I decided to test them all by the following criteria:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;how much memory and processing do they consume at idle?&lt;/li&gt;
+&lt;li&gt;how ‘fast’ do they feel?&lt;/li&gt;
+&lt;li&gt;how well do they handle different terminal sizes?&lt;/li&gt;
+&lt;li&gt;do they include graphs and colors?&lt;/li&gt;
+&lt;li&gt;how much do I like them?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;First we can look at the more ‘objective’ stats. I include the minimum and maximum percent observed while running the tests on an i7 (six-core, 2.2GHz) laptop with 16GB of RAM. Some programs usage spiked, others remained steady. Hopefully reporting the numbers this way gives a sense of that. Measurements were taken from &lt;code&gt;htop&lt;/code&gt; and results are ranked from best to worst performance:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class="header"&gt;
+&lt;th&gt;command&lt;/th&gt;
+&lt;th&gt;min. CPU %&lt;/th&gt;
+&lt;th&gt;max. CPU %&lt;/th&gt;
+&lt;th&gt;min. MEM %&lt;/th&gt;
+&lt;th&gt;max. MEM %&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;top&lt;/td&gt;
+&lt;td&gt;0.0&lt;/td&gt;
+&lt;td&gt;0.0&lt;/td&gt;
+&lt;td&gt;0.0&lt;/td&gt;
+&lt;td&gt;0.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;htop&lt;/td&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;0.2&lt;/td&gt;
+&lt;td&gt;0.0&lt;/td&gt;
+&lt;td&gt;0.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;ytop&lt;/td&gt;
+&lt;td&gt;0.2&lt;/td&gt;
+&lt;td&gt;0.9&lt;/td&gt;
+&lt;td&gt;0.0&lt;/td&gt;
+&lt;td&gt;0.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;zenith&lt;/td&gt;
+&lt;td&gt;0.0&lt;/td&gt;
+&lt;td&gt;1.9&lt;/td&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;btm&lt;/td&gt;
+&lt;td&gt;1.9&lt;/td&gt;
+&lt;td&gt;4.2&lt;/td&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;glances&lt;/td&gt;
+&lt;td&gt;0.0&lt;/td&gt;
+&lt;td&gt;7.7&lt;/td&gt;
+&lt;td&gt;0.3&lt;/td&gt;
+&lt;td&gt;0.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;vtop&lt;/td&gt;
+&lt;td&gt;3.0&lt;/td&gt;
+&lt;td&gt;6.1&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;gtop&lt;/td&gt;
+&lt;td&gt;3.1&lt;/td&gt;
+&lt;td&gt;7.2&lt;/td&gt;
+&lt;td&gt;0.6&lt;/td&gt;
+&lt;td&gt;0.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;In defense of &lt;code&gt;glances&lt;/code&gt;, it does do more work than the others—including reporting to a web interface and other potentially useful server-oriented features. As for the others, the numbers speak for themselves. Let’s consider more subjective qualities: ranking from 0-3 where 0 means that a feature either is not supported or is unacceptably bad. Results are sorted by total:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class="header"&gt;
+&lt;th&gt;command&lt;/th&gt;
+&lt;th&gt;color&lt;/th&gt;
+&lt;th&gt;scales&lt;/th&gt;
+&lt;th&gt;graphs&lt;/th&gt;
+&lt;th&gt;speed&lt;/th&gt;
+&lt;th&gt;info&lt;/th&gt;
+&lt;th&gt;like&lt;/th&gt;
+&lt;th&gt;total&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;ytop&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;15&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;zenith&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;14&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;btm&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;htop&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;11&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;top&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;gtop&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;glances&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;vtop&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;We see here that the JavaScript tools fall behind in both performance and in functionality. The ‘like’ factor is of course very personal: if you don’t resize your windows much, the ‘scales’ column will probably impact your ‘like’ factor far less than it does mine. &lt;code&gt;ytop&lt;/code&gt; and &lt;code&gt;btm&lt;/code&gt; have &lt;code&gt;vi&lt;/code&gt;-style controls which I like, and &lt;code&gt;zenith&lt;/code&gt; lets you move back and forth in time. Below are screenshots of the tools ranked by how likely I am to use them, but none of the new Rust tools are bad choices. &lt;code&gt;top&lt;/code&gt; isn’t going anywhere just yet.&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src="top.jpg" title="top" alt="" /&gt;&lt;figcaption&gt;top&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+&lt;img src="ytop.jpg" title="ytop" alt="" /&gt;&lt;figcaption&gt;ytop&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+&lt;img src="zenith.jpg" title="zenith" alt="" /&gt;&lt;figcaption&gt;zenith&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+&lt;img src="btm.jpg" title="btm" alt="" /&gt;&lt;figcaption&gt;btm&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+&lt;img src="htop.jpg" title="htop" alt="" /&gt;&lt;figcaption&gt;htop&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+&lt;img src="glances.jpg" title="glances" alt="" /&gt;&lt;figcaption&gt;glances&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+&lt;img src="gtop.jpg" title="gtop" alt="" /&gt;&lt;figcaption&gt;gtop&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+&lt;img src="vtop.jpg" title="vtop" alt="" /&gt;&lt;figcaption&gt;vtop&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/main&gt;
+    </content>
   </entry>
   <entry>
     <title>A hop, skip, and a jump</title>
     <link href='https://hypomnema.net/a-hop-skip-and-a-jump'/>
     <id>https://hypomnema.net/a-hop-skip-and-a-jump</id>
-    <updated>2020-04-22T20:24:09Z</updated>
+    <updated>2020-05-10T15:14:32Z</updated>
     <summary>There’s many benefits to working from the command line. A
 terminal-centric workflow is broadly cross-platform, uses less system
 resources, is highly customizable, and most importantly fast. But only
 if you take a little time to get acquainted with the right tools. Take
 the example of moving up, down, and around the filesystem hierarchy:</summary>
-    <content type='html' src='https://hypomnema.net/a-hop-skip-and-a-jump'></content>
+    <content type='text/html'>
+      &lt;main&gt;
+&lt;h2 class='title'&gt;A hop, skip, and a jump&lt;/h2&gt;
+&lt;p&gt;There’s many benefits to working from the command line. A terminal-centric workflow is broadly cross-platform, uses less system resources, is highly customizable, and most importantly &lt;em&gt;fast&lt;/em&gt;. But only if you take a little time to get acquainted with the right tools. Take the example of moving up, down, and around the filesystem hierarchy:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ cd example/one/two/
+$ pwd
+/home/user/example/one/two/
+$ cd three
+$ pwd
+/home/user/example/one/two/three
+$ cd a/b/c
+$ pwd
+/home/user/example/one/two/three/a/b/c
+$ cd
+$ pwd
+/home/user
+$ z c
+$ pwd
+/home/user/example/one/two/three/a/b/c
+$ z th
+$ pwd
+/home/user/example/one/two/three&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Like tab-completion, autojump tools reduce command-line typing. Most work by remembering the most relevant and visited directories (sometimes through a &lt;a href="https://developer.mozilla.org/en-US/docs/Mozilla/Tech/Places/Frecency_algorithm"&gt;‘frecency’ algorithm&lt;/a&gt;) and then making educated guesses about where the user wants to go. This is obviously functionality designed around interactive shell work and not meant for scripting. There are a number of utilities built around this concept:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class="header"&gt;
+&lt;th&gt;command&lt;/th&gt;
+&lt;th&gt;language&lt;/th&gt;
+&lt;th&gt;year first released&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;a href="https://github.com/wting/autojump"&gt;autojump&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Python&lt;/td&gt;
+&lt;td&gt;2009&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;a href="https://github.com/whjvenyl/fasd"&gt;fasd&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Shell&lt;/td&gt;
+&lt;td&gt;2011&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;a href="https://github.com/rupa/z"&gt;z&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Shell&lt;/td&gt;
+&lt;td&gt;2011&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;a href="https://github.com/euank/pazi"&gt;pazi&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Rust&lt;/td&gt;
+&lt;td&gt;2017&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;code&gt;pazi&lt;/code&gt; got my attention because of it’s impressive &lt;a href="https://github.com/euank/pazi/blob/master/docs/Benchmarks.md"&gt;benchmarks&lt;/a&gt;. It also has support for using &lt;a href="https://github.com/euank/pazi/blob/master/docs/usage/pipe.md"&gt;fuzzy-finders&lt;/a&gt;, which are themselves very useful tools. A simple alias of the default jump key &lt;code&gt;z&lt;/code&gt; to &lt;code&gt;j&lt;/code&gt; makes the experience even more ergonomic. The hops don’t always land where expected, especially until the tool has had enough time to learn, but skipping around saves time and needless typing overall.&lt;/p&gt;
+&lt;/main&gt;
+    </content>
   </entry>
   <entry>
     <title>One small step for man</title>
     <link href='https://hypomnema.net/one-small-step-for-man'/>
     <id>https://hypomnema.net/one-small-step-for-man</id>
-    <updated>2020-04-22T20:24:08Z</updated>
+    <updated>2020-05-10T15:14:31Z</updated>
     <summary>‘Read the manual’—timeless and sage advice. But what about a summary?
 Can one hundred words be more useful than twenty thousand? Enough
 developers think so to write several alternatives to the classic Unix
 man and GNU info systems. A quick test lookup of documentation for gpg
 brought surprising results:</summary>
-    <content type='html' src='https://hypomnema.net/one-small-step-for-man'></content>
+    <content type='text/html'>
+      &lt;main&gt;
+&lt;h2 class='title'&gt;One small step for man&lt;/h2&gt;
+&lt;p&gt;‘Read the manual’—timeless and sage advice. But what about a summary? Can one hundred words be more useful than twenty thousand? Enough developers think so to write several alternatives to the classic Unix &lt;code&gt;man&lt;/code&gt; and GNU &lt;code&gt;info&lt;/code&gt; systems. A quick test lookup of documentation for &lt;code&gt;gpg&lt;/code&gt; brought surprising results:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class="header"&gt;
+&lt;th&gt;command&lt;/th&gt;
+&lt;th&gt;language&lt;/th&gt;
+&lt;th&gt;birth year&lt;/th&gt;
+&lt;th&gt;time (ms)&lt;/th&gt;
+&lt;th&gt;words&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;a href="https://www.unix.com/man-page-repository.php"&gt;man&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;td&gt;1971&lt;/td&gt;
+&lt;td&gt;81.53&lt;/td&gt;
+&lt;td&gt;21884&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;a href="https://www.gnu.org/s/texinfo"&gt;info&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;C, Perl&lt;/td&gt;
+&lt;td&gt;1986&lt;/td&gt;
+&lt;td&gt;70.86&lt;/td&gt;
+&lt;td&gt;57676&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;a href="https://tldr.sh"&gt;tldr&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Multiple&lt;/td&gt;
+&lt;td&gt;2013&lt;/td&gt;
+&lt;td&gt;8.31&lt;/td&gt;
+&lt;td&gt;103&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;a href="http://bropages.org"&gt;bro&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Ruby&lt;/td&gt;
+&lt;td&gt;2014&lt;/td&gt;
+&lt;td&gt;351.17&lt;/td&gt;
+&lt;td&gt;308&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;a href="https://github.com/cheat/cheat"&gt;cheat&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Go&lt;/td&gt;
+&lt;td&gt;2014&lt;/td&gt;
+&lt;td&gt;99.92&lt;/td&gt;
+&lt;td&gt;525&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;a href="https://github.com/srsudar/eg"&gt;eg&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Python&lt;/td&gt;
+&lt;td&gt;2015&lt;/td&gt;
+&lt;td&gt;103.64&lt;/td&gt;
+&lt;td&gt;357&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;a href="https://cheat.sh"&gt;cheat.sh&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Python&lt;/td&gt;
+&lt;td&gt;2017&lt;/td&gt;
+&lt;td&gt;141.84&lt;/td&gt;
+&lt;td&gt;91&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;So this was a blowout, with &lt;code&gt;tldr&lt;/code&gt; running away with performance. Even though the ‘official’ client is written in JavaScript, there are Ruby, Haskell, Perl, Python, C++, Rust, Bash, and Go clients available. I had no idea that my package manager had installed the C++ client by default. There’s also a web application, Dash integration, and an iOS app available. The silver medal goes to the &lt;code&gt;cheat.sh&lt;/code&gt; service which requires only internet access: a very interesting approach that will no doubt be useful wherever applications cannot be installed. &lt;code&gt;bro&lt;/code&gt; kept throwing weird warnings and &lt;code&gt;eg&lt;/code&gt; did not have &lt;code&gt;gpg&lt;/code&gt; in it’s knowledge base, so I would not recommend them. &lt;code&gt;cheat&lt;/code&gt; offers users an easy way to add their own content in custom ‘cheat-sheets’, with the ‘community’ cheat-sheet being little more than a default source. Honestly, I never really use &lt;code&gt;info&lt;/code&gt; pages. Interestingly, colorless and ancient &lt;code&gt;man&lt;/code&gt; still has the best formatting of them all:&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src="man.jpg" title="man" alt="" /&gt;&lt;figcaption&gt;man&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+&lt;img src="tldr.jpg" title="tldr" alt="" /&gt;&lt;figcaption&gt;tldr&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+&lt;img src="bro.jpg" title="bro" alt="" /&gt;&lt;figcaption&gt;bro&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+&lt;img src="cheat.jpg" title="cheat" alt="" /&gt;&lt;figcaption&gt;cheat&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+&lt;img src="eg.jpg" title="eg" alt="" /&gt;&lt;figcaption&gt;eg&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+&lt;img src="cheat-sh.jpg" title="cheat-sh" alt="" /&gt;&lt;figcaption&gt;cheat-sh&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/main&gt;
+    </content>
   </entry>
   <entry>
     <title>Rusting tools</title>
     <link href='https://hypomnema.net/rusting-tools'/>
     <id>https://hypomnema.net/rusting-tools</id>
-    <updated>2020-04-22T20:24:08Z</updated>
+    <updated>2020-05-10T15:14:32Z</updated>
     <summary>There are many classic command line tools known for their gotchas. The
 flags for some are famously cryptic, and arcana rest buried in the heart
 of Unix. A few Rust developers have decided to refresh the scene with
@@ -55,24 +453,414 @@ new attempts at solving these epoch-old problems. These new tools are
 not likely to displace programs that have decades of use in production
 behind them, but they can make working in the terminal far more
 ergonomic:</summary>
-    <content type='html' src='https://hypomnema.net/rusting-tools'></content>
+    <content type='text/html'>
+      &lt;main&gt;
+&lt;h2 class='title'&gt;Rusting tools&lt;/h2&gt;
+&lt;p&gt;There are many classic command line tools known for their gotchas. The flags for some are &lt;a href="https://xkcd.com/1168/"&gt;famously&lt;/a&gt; cryptic, and &lt;a href="https://wiki.c2.com/?EdIsTheStandardTextEditor"&gt;arcana&lt;/a&gt; rest buried in the heart of Unix. A few Rust developers have decided to refresh the scene with new attempts at solving these epoch-old problems. These new tools are not likely to displace programs that have decades of use in production behind them, but they can make working in the terminal far more ergonomic:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class="header"&gt;
+&lt;th&gt;old skool&lt;/th&gt;
+&lt;th&gt;new school&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;cat&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/sharkdp/bat"&gt;bat&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;find&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/sharkdp/fd"&gt;fd&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;grep&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/BurntSushi/ripgrep"&gt;ripgrep&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;less&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/sharkdp/bat"&gt;bat&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;ls&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://the.exa.website/"&gt;exa&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="finding-a-new-way"&gt;Finding a new way&lt;/h3&gt;
+&lt;p&gt;Consider the case of the venerable &lt;code&gt;find&lt;/code&gt;. Which of these two commands is more intuitive?&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;############
+# Option 1 #
+############
+$ find . -name &amp;#39;*.md&amp;#39;
+./node_modules/unfashionable/README.md
+./README.md
+./src/one-small-step-for-man.md
+./src/spinning-tops.md
+./src/a-hop-skip-and-a-jump.md
+./src/index.md
+./src/about.md
+############
+# Option 2 #
+############
+$ find --extension md
+README.md
+src/a-hop-skip-and-a-jump.md
+src/about.md
+src/index.md
+src/one-small-step-for-man.md
+src/spinning-tops.md&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Option 1 specifies the target directory, uses a single-hyphen but word-length flag, then takes a quoted glob. Option 1 also searches everywhere, including in the &lt;code&gt;node_modules/&lt;/code&gt; directory. Finally, Option 1 prepends &lt;code&gt;./&lt;/code&gt; on all the output. Option 2 takes a double-hyphen word argument and the extension to search for. It colors directories like &lt;code&gt;ls&lt;/code&gt;, simplifies output and ignores whatever is in the project’s &lt;code&gt;.gitignore&lt;/code&gt; file. Option 1 is the classic &lt;code&gt;find&lt;/code&gt; utility, and Option 2 is the new &lt;code&gt;fd&lt;/code&gt;. As the &lt;a href="https://github.com/sharkdp/fd"&gt;README&lt;/a&gt; puts it:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;fd is a simple, fast and user-friendly alternative to find.&lt;/p&gt;
+&lt;p&gt;While it does not seek to mirror all of find’s powerful functionality, it provides sensible (opinionated) defaults for 80% of the use cases.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;For any interactive use, &lt;code&gt;fd&lt;/code&gt; is a clear winner.&lt;/p&gt;
+&lt;h3 id="theory-of-cats"&gt;Theory of cats&lt;/h3&gt;
+&lt;p&gt;Does it matter if a &lt;code&gt;cat&lt;/code&gt; black and white?&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src="cat.jpg" title="$ cat style.css" alt="" /&gt;&lt;figcaption&gt;cat&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+&lt;img src="bat.jpg" title="$ bat style.css" alt="" /&gt;&lt;figcaption&gt;bat&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;code&gt;bat&lt;/code&gt; is more functional, easier to read, more flexible, and only 1ms slower than classic &lt;code&gt;cat&lt;/code&gt;. Turning once again to the project’s &lt;a href="https://github.com/sharkdp/bat#project-goals-and-alternatives"&gt;README&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;bat tries to achieve the following goals:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Provide beautiful, advanced syntax highlighting&lt;/li&gt;
+&lt;li&gt;Integrate with Git to show file modifications&lt;/li&gt;
+&lt;li&gt;Be a drop-in replacement for (POSIX) cat&lt;/li&gt;
+&lt;li&gt;Offer a user-friendly command-line interface&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;bat&lt;/code&gt; can also serve as &lt;code&gt;$PAGER&lt;/code&gt;, replacing &lt;code&gt;more&lt;/code&gt; or &lt;code&gt;less&lt;/code&gt;:&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src="less.jpg" title="$ less style.css" alt="" /&gt;&lt;figcaption&gt;less&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id="listless-lists"&gt;Listless lists&lt;/h3&gt;
+&lt;p&gt;And yes, even &lt;code&gt;ls&lt;/code&gt; has been improved:&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src="lsla.jpg" title="$ ls -la" alt="" /&gt;&lt;figcaption&gt;ls&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+&lt;img src="exala.jpg" title="$ exa -la" alt="" /&gt;&lt;figcaption&gt;exa&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;A final &lt;a href="https://the.exa.website/" title="The exa website"&gt;blurb&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You list files hundreds of times a day. Why spend your time squinting at black and white text?&lt;/p&gt;
+&lt;p&gt;exa is an improved file lister with more features and better defaults. It uses colours to distinguish file types and metadata. It knows about symlinks, extended attributes, and Git. And it’s small, fast, and just one single binary.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="r.i.p-grep"&gt;R.I.P grep&lt;/h3&gt;
+&lt;p&gt;Searching at the command line has lots of alternatives. &lt;code&gt;ripgrep&lt;/code&gt; &lt;a href="https://blog.burntsushi.net/ripgrep/#anti-pitch"&gt;blows them away&lt;/a&gt;. The project documents the features and advantages so extensively that for the sake of time, just go &lt;a href="https://github.com/BurntSushi/ripgrep"&gt;try it out&lt;/a&gt;:&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src="grep-directory.jpg" title="$ grep -RI 2em ." alt="" /&gt;&lt;figcaption&gt;grep&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+&lt;img src="ripgrep-directory.jpg" title="$ rg 2em" alt="" /&gt;&lt;figcaption&gt;ripgrep&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id="round-up"&gt;Round-up&lt;/h3&gt;
+&lt;p&gt;These new tools require no configuration, get out of the user’s way, and are broadly compatible with the standard programs they replace. I’ve gone so far as to alias most of the old to the new, and in about a year of working with them I’ve had no issues. For developers in particular, the &lt;code&gt;git&lt;/code&gt; integrations and streamlined flags alone are worth switching.&lt;/p&gt;
+&lt;/main&gt;
+    </content>
   </entry>
   <entry>
     <title>Dead reckoning</title>
     <link href='https://hypomnema.net/dead-reckoning'/>
     <id>https://hypomnema.net/dead-reckoning</id>
-    <updated>2020-04-22T20:24:08Z</updated>
+    <updated>2020-05-10T15:14:32Z</updated>
     <summary>  The happiest changes that have happened among the nations have usually
   been bought by bloody catastrophes of which innocence was the victim.</summary>
-    <content type='html' src='https://hypomnema.net/dead-reckoning'></content>
+    <content type='text/html'>
+      &lt;main&gt;
+&lt;h2 class='title'&gt;Dead reckoning&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The happiest changes that have happened among the nations have usually been bought by bloody catastrophes of which innocence was the victim.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;— Joseph de Maistre&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure&gt;
+&lt;img src="covid-19-map.png" title="COVID-19 world map" alt="" /&gt;&lt;figcaption&gt;Map of confirmed cases of COVID-19 per capita (as of 12 April 2020)&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;The SARS-CoV-2 virus infected its &lt;a href="https://en.wikipedia.org/wiki/Timeline_of_the_2019%E2%80%9320_coronavirus_pandemic_from_November_2019_to_January_2020"&gt;first confirmed patient&lt;/a&gt; with a novel strain of coronavirus (COVID-19) on December 1st, 2019 in China. In January of the new year, well-known American academics &lt;a href="https://www.academia.edu/41743064/Systemic_Risk_of_Pandemic_via_Novel_Pathogens_-_Coronavirus_A_Note"&gt;warned&lt;/a&gt; of the danger the virus posed. By February lockdowns, quarantines, &lt;a href="https://www.reuters.com/article/us-china-health-hongkong/hong-kong-suspends-four-more-border-crossings-to-curb-spread-of-virus-idUSKBN1ZX0P6"&gt;border closures&lt;/a&gt;, and other containment measures were &lt;a href="https://www.aa.com.tr/en/health/turkey-to-suspend-flights-from-china-until-end-of-month/1722860"&gt;announced&lt;/a&gt; around the globe. The World Health Organization publicly called for countries to &lt;a href="https://www.reuters.com/article/us-china-health-who-idUSKBN1ZX1H3"&gt;keep their borders open&lt;/a&gt;. Western liberal democracies &lt;a href="https://euobserver.com/coronavirus/147576"&gt;lagged&lt;/a&gt; in their response: &lt;a href="https://www.reuters.com/article/us-health-coronavirus-idUSKBN2160ZP"&gt;Italy overtook China&lt;/a&gt; as the epicenter of the global pandemic. Singapore announced a &lt;a href="https://www.channelnewsasia.com/news/singapore/covid19-travel-restrictions-italy-france-germany-spain-12534476"&gt;travel ban&lt;/a&gt; from western Europe on March 15th. By the end of the month, the French public was &lt;a href="https://www.reuters.com/article/us-health-coronavirus-france-confinement-idUSKBN2121DT"&gt;confined&lt;/a&gt; at home indefinitely. The United States &lt;a href="https://www.nytimes.com/2020/04/02/world/coronavirus-live-news-updates.html"&gt;failed&lt;/a&gt; to coherently &lt;a href="https://www.reuters.com/article/us-china-health-usa-preparedness/mixed-messages-test-delays-hamper-u-s-coronavirus-response-idUSKCN20L36Z"&gt;respond&lt;/a&gt; to the threat. The &lt;a href="https://www.nytimes.com/2020/03/26/health/usa-coronavirus-cases.html"&gt;&lt;em&gt;New York Times&lt;/em&gt;&lt;/a&gt; reported on March 26th, 2020 that ‘the U.S. Now Leads the World in Confirmed Coronavirus Cases’.&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src="nyc-mass-graves.jpg" title="Hart Island burial" alt="" /&gt;&lt;figcaption&gt;Mass graves in New York City&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;a href="https://www.wsj.com/articles/democracy-dictatorship-disease-the-west-takes-its-turn-with-coronavirus-11583701472"&gt;The&lt;/a&gt; &lt;a href="https://www.reuters.com/article/us-health-coronavirus-sweden/swedens-liberal-pandemic-strategy-questioned-as-stockholm-death-toll-mounts-idUSKBN21L23R"&gt;failure&lt;/a&gt; &lt;a href="https://www.chathamhouse.org/expert/comment/coronavirus-and-future-democracy-europe"&gt;of&lt;/a&gt; &lt;a href="https://www.nytimes.com/2020/03/19/world/europe/europe-china-coronavirus.html"&gt;liberal&lt;/a&gt; &lt;a href="https://www.politico.eu/article/democracy-in-critical-care-as-coronavirus-disrupts-governments/"&gt;democracy&lt;/a&gt; &lt;a href="https://eeas.europa.eu/headquarters/headquarters-homepage/76379/corona-virus-pandemic-and-new-world-it-creating_en"&gt;hardly&lt;/a&gt; &lt;a href="https://www.newstatesman.com/science-tech/coronavirus/2020/03/crisis-liberal-zombie-order"&gt;went&lt;/a&gt; &lt;a href="https://www.ft.com/content/0e83be62-6e98-11ea-89df-41bea055720b"&gt;unnoticed&lt;/a&gt;. The questions will not go away: why have so many died? The richest and most technologically advanced countries in the world failed to take basic preventative measures until it was far too late. Nations have been put under mass house arrest. Nurses and doctors needlessly &lt;a href="https://nypost.com/2020/03/25/worker-at-nyc-hospital-where-nurses-wear-trash-bags-as-protection-dies-from-coronavirus/"&gt;died&lt;/a&gt; for want of basic supplies. International institutions, experts, and governments &lt;a href="https://www.voanews.com/science-health/coronavirus-outbreak/who-dont-wear-face-masks"&gt;fatally misled the public&lt;/a&gt;. At present, most are more concerned with survival than blame. But there must be a reckoning.&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src="corona-unemployment.jpg" title="Unemployment jump due to COVID-19" alt="" /&gt;&lt;figcaption&gt;USA: coronavirus related unemployment&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Given the &lt;a href="https://www.bbc.com/news/world-europe-51781394"&gt;escalating&lt;/a&gt; &lt;a href="https://www.democracynow.org/2020/4/9/headlines/italy_to_close_ports_to_migrant_aid_ships_asylees_in_greece_must_remain_in_camps"&gt;migrant&lt;/a&gt; &lt;a href="https://www.vice.com/en_us/article/3a8mny/what-the-hell-is-happening-with-migrants-in-greece"&gt;crisis&lt;/a&gt; and longstanding &lt;a href="https://www.theguardian.com/world/2020/apr/01/coronavirus-could-be-final-straw-for-eu-european-experts-warn"&gt;fissures&lt;/a&gt; within the European Union, the post-Soviet consensus is &lt;a href="https://www.csmonitor.com/World/Europe/2020/0409/From-democracy-to-authoritarianism-Hungary-under-Orban-audio"&gt;fraying&lt;/a&gt;. While a loyal &lt;a href="https://foreignpolicy.com/2020/03/25/china-coronavirus-propaganda-weakens-western-democracies/"&gt;liberal&lt;/a&gt; &lt;a href="https://www.vox.com/2020/3/26/21184238/coronavirus-china-authoritarian-system-democracy"&gt;press&lt;/a&gt; duly attempts damage control, the evident cannot be denied: the &lt;a href="https://www.pewresearch.org/fact-tank/2020/03/10/fast-facts-on-how-greeks-see-migrants-as-greece-turkey-border-crisis-deepens/"&gt;public&lt;/a&gt; is &lt;a href="https://migrationobservatory.ox.ac.uk/resources/briefings/uk-public-opinion-toward-immigration-overall-attitudes-and-level-of-concern/"&gt;turning&lt;/a&gt; &lt;a href="https://www.politico.eu/article/europe-migration-refugees-drop-dead-angela-merkel-matteo-salvini-libya-italy-germany-refugees/"&gt;against&lt;/a&gt; &lt;a href="https://www.theguardian.com/world/2019/oct/24/western-liberalism-failed-post-communist-eastern-europe"&gt;‘the god that failed’&lt;/a&gt;. Europe is only one example of a &lt;a href="https://www.thenation.com/article/archive/far-right-nationalist-climate-crisis/"&gt;growing global reaction&lt;/a&gt;. After elites refused to close Western borders and thousands rest six feet under, will average citizens be eager to throw open their doors? If ‘economic anxiety’ brought Donald Trump to the White House, what will the flat-lined world economy inspire?&lt;/p&gt;
+&lt;p&gt;Even if we step back from the &lt;a href="https://www.pewresearch.org/fact-tank/2016/11/09/why-2016-election-polls-missed-their-mark/"&gt;infamously&lt;/a&gt; inexact attempt to gauge public opinion on such large questions, we can clearly see how governments are responding. Europe’s humanitarian posture was already &lt;a href="https://www.migrationpolicy.org/article/migration-netherlands-rhetoric-and-perceived-reality-challenge-dutch-tolerance"&gt;strained&lt;/a&gt;: with the pandemic it may &lt;a href="https://www.independent.co.uk/news/world/europe/coronavirus-europe-open-borders-eu-italy-france-britain-germany-spain-a9362536.html"&gt;shatter&lt;/a&gt;. Outside the West, allied states have taken drastic measures including &lt;a href="https://karunadu.karnataka.gov.in/hfw/kannada/Pages/distwise-home-quarantive.aspx"&gt;publishing the home addresses&lt;/a&gt; of quarantined people and imposing harsh personal surveillance:&lt;/p&gt;
+&lt;blockquote class="twitter-tweet"&gt;
+&lt;p lang="en" dir="ltr"&gt;
+A selfie an hour, will keep the police away! As many &lt;a href="https://twitter.com/hashtag/HomeQuarantined?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#HomeQuarantined&lt;/a&gt; are stepping out, the Quarantine Watch Mobile App requires these citizens to send a selfie every waking hour. If the GPS coordinates change, they will be sent to a Govt-run mass quarantine centre.&lt;a href="https://twitter.com/hashtag/StayHome?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#StayHome&lt;/a&gt; &lt;a href="https://t.co/Ofo9t80P9G"&gt;pic.twitter.com/Ofo9t80P9G&lt;/a&gt;
+&lt;/p&gt;
+— B.H.Anil Kumar,IAS (&lt;span class="citation" data-cites="BBMPCOMM"&gt;@BBMPCOMM&lt;/span&gt;) &lt;a href="https://twitter.com/BBMPCOMM/status/1244638979141455873?ref_src=twsrc%5Etfw"&gt;March 30, 2020&lt;/a&gt;
+&lt;/blockquote&gt;
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+&lt;p&gt;&lt;a href="https://www.newyorker.com/news/letter-from-the-uk/the-rise-of-coronavirus-hate-crimes"&gt;Public&lt;/a&gt; &lt;a href="https://www.nbcnews.com/health/health-news/coronavirus-quarantine-some-americans-prepare-leave-workers-air-force-base-n1134336"&gt;harassment&lt;/a&gt; is a response shared by governments and everyday people alike. So is &lt;a href="https://www.nytimes.com/2020/04/06/world/coronavirus-domestic-violence.html"&gt;abusive&lt;/a&gt; &lt;a href="https://www.reuters.com/video/watch/idOVC6K2RMZ"&gt;violence&lt;/a&gt;, from &lt;a href="https://www.youtube.com/watch?v=MpRdIxYgyJw"&gt;South Africa&lt;/a&gt; to &lt;a href="https://meduza.io/en/feature/2020/03/30/go-hard-or-go-home"&gt;Chechnya&lt;/a&gt; to &lt;a href="https://www.nytimes.com/2020/04/02/world/australia/coronavirus-police-lockdowns.html"&gt;Australia&lt;/a&gt;. Apart from a &lt;a href="https://www.bbc.com/news/world-asia-51733145"&gt;limited&lt;/a&gt; &lt;a href="https://www.ft.com/content/7cfad020-78c4-11ea-9840-1b8019d9a987"&gt;discussion&lt;/a&gt; &lt;a href="https://www.sciencemag.org/news/2020/03/cellphone-tracking-could-help-stem-spread-coronavirus-privacy-price"&gt;concerning&lt;/a&gt; &lt;a href="https://theintercept.com/2020/04/02/coronavirus-covid-19-surveillance-privacy/"&gt;privacy&lt;/a&gt;, it seems clear that wherever possible &lt;a href="https://www.google.com/url?sa=t&amp;amp;rct=j&amp;amp;q=&amp;amp;esrc=s&amp;amp;source=newssearch&amp;amp;cd=1&amp;amp;cad=rja&amp;amp;uact=8&amp;amp;ved=0ahUKEwjJ6sn_ieXoAhVK1hoKHTeHCdkQqQIIKygAMAA&amp;amp;url=https%3A%2F%2Fwww.france24.com%2Fen%2F20200409-as-france-considers-digital-tracking-to-battle-coronavirus-critics-raise-privacy-concerns&amp;amp;usg=AOvVaw3H5MloehiGFsV-kz6O_ZRp"&gt;tracking&lt;/a&gt; &lt;a href="https://www.theguardian.com/politics/2020/apr/12/uk-app-to-track-coronavirus-spread-to-be-launched"&gt;apps&lt;/a&gt; will be &lt;a href="https://www.google.com/url?sa=t&amp;amp;rct=j&amp;amp;q=&amp;amp;esrc=s&amp;amp;source=newssearch&amp;amp;cd=8&amp;amp;cad=rja&amp;amp;uact=8&amp;amp;ved=0ahUKEwjJ6sn_ieXoAhVK1hoKHTeHCdkQqQIITSgAMAc&amp;amp;url=https%3A%2F%2Fwww.bbc.com%2Fnews%2Ftechnology-52189551&amp;amp;usg=AOvVaw3g8Pk18cm_XU4IMTomGwPG"&gt;launched&lt;/a&gt;. Worldwide police &lt;a href="https://www.france24.com/en/20200317-france-to-deploy-100-000-police-to-enforce-its-war-on-coronavirus"&gt;enforcement&lt;/a&gt;, whether sweeping slums or stopping &lt;a href="https://www.latimes.com/california/story/2020-03-29/surfer-fined-1-000-for-ignoring-coronavirus-closure-in-manhattan-beach"&gt;surfers&lt;/a&gt;, may differ in degree. &lt;a href="https://www.reuters.com/article/us-health-coronavirus-brazil-favelas-fea-idUSKBN21B3EV"&gt;Non-state actors&lt;/a&gt; are also stepping up to the task of population control. It is no surprise that the global pandemic should provoke fear everywhere it goes. What is noteworthy is how quickly &lt;a href="https://today.law.harvard.edu/restricting-civil-liberties-amid-the-covid-19-pandemic/"&gt;elite&lt;/a&gt; consensus has settled on the need to (at least temporarily) suspend &lt;a href="https://www.theguardian.com/world/2020/mar/31/civil-liberties-us-coronavirus-outbreak-policies"&gt;civil liberties&lt;/a&gt;. Early &lt;a href="https://www.telegraph.co.uk/news/2020/01/24/totalitarian-china-incapable-telling-truth-virus/"&gt;criticism&lt;/a&gt; &lt;a href="https://www.nytimes.com/2020/01/21/world/asia/china-coronavirus-wuhan.html"&gt;of&lt;/a&gt; &lt;a href="https://foreignpolicy.com/2020/02/15/coronavirus-xi-jinping-chinas-incompetence-endangered-the-world/"&gt;China&lt;/a&gt; from liberal mouthpieces has &lt;a href="https://www.theguardian.com/commentisfree/2020/apr/10/lift-lockdown-uk-east-asia-coronavirus-pandemic"&gt;transformed&lt;/a&gt; &lt;a href="https://www.businessinsider.fr/us/chinas-coronavirus-quarantines-other-countries-arent-ready-2020-3"&gt;into&lt;/a&gt; &lt;a href="https://www.politico.eu/article/coronavirus-china-winning-propaganda-war/"&gt;grudging&lt;/a&gt; &lt;a href="https://www.cnbc.com/2020/03/17/coronavirus-who-urges-europe-to-learn-from-china-to-tackle-pandemic.html"&gt;praise&lt;/a&gt;. Some spectators have dubbed this turn of events a &lt;a href="https://spectator.us/new-world-order-after-coronavirus/"&gt;‘crash test’&lt;/a&gt; for Western soft power. The reality is far more sweeping: &lt;em&gt;this is a biological referendum on governance.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Whether or not &lt;a href="https://www.nytimes.com/2020/04/02/us/politics/cia-coronavirus-china.html"&gt;some&lt;/a&gt; &lt;a href="https://www.france24.com/en/20200328-brazil-s-bolsonaro-questions-coronavirus-statistics-says-sorry-some-will-die"&gt;trust&lt;/a&gt; the &lt;a href="https://www.aljazeera.com/news/2020/04/inhuman-china-blasts-coronavirus-questions-200402113917747.html"&gt;statistics&lt;/a&gt;, the overall trend is clear: liberal democracies have fared far worse than their illiberal adversaries. In America, public confusion and controversy on measures from &lt;a href="https://www.who.int/publications-detail/advice-on-the-use-of-masks-in-the-community-during-home-care-and-in-healthcare-settings-in-the-context-of-the-novel-coronavirus-(2019-ncov)-outbreak"&gt;masks&lt;/a&gt; to &lt;a href="https://www.washingtonpost.com/lifestyle/media/for-fox-news-hosts-the-hydroxychloroquine-controversy-is-fuel-for-the-culture-war/2020/04/10/0ec604d6-79a4-11ea-b6ff-597f170df8f8_story.html"&gt;hydroxychloroquine&lt;/a&gt; was not limited to the vicious, constant news churn. Public officials &lt;a href="https://www.nytimes.com/2020/04/12/nyregion/schools-cuomo-de-blasio-nyc-coronavirus.html"&gt;contradict&lt;/a&gt; one another, as democracy requires. The Mayor of New York and the Governor of New York are structurally opposed, and the pandemic only reveals that. China was widely &lt;a href="https://www.latimes.com/world-nation/story/2020-02-06/coronavirus-china-xi-li-wenliang"&gt;condemned&lt;/a&gt; for bungling the initial coronavirus response, but punishing doctors pales in comparison to letting the virus &lt;a href="https://www.washingtonpost.com/national-security/2020/04/04/coronavirus-government-dysfunction/?arc404=true"&gt;spread unchecked&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The obvious implications here &lt;a href="https://www.vox.com/2020/3/26/21184238/coronavirus-china-authoritarian-system-democracy"&gt;have so far been waved away&lt;/a&gt; by paladins of the &lt;em&gt;pensée unique&lt;/em&gt;. And there is little doubt that the liberal press will continue to defend the regimes that provide their platform. The world has already turned from Locke towards Hobbes. As the morgues and mass graves fill, where does the referendum stand today?&lt;/p&gt;
+&lt;h3 id="comparing-failures"&gt;Comparing failures&lt;/h3&gt;
+&lt;p&gt;The preceding paragraphs told the story, so here we will simply note the statistics (&lt;a href="https://www.worldometers.info/coronavirus/"&gt;collected&lt;/a&gt; April 13th, 2020):&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class="header"&gt;
+&lt;th&gt;Country&lt;/th&gt;
+&lt;th&gt;Total Deaths&lt;/th&gt;
+&lt;th&gt;Deaths / 1M pop.&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;🇧🇪 Belgium&lt;/td&gt;
+&lt;td&gt;3903&lt;/td&gt;
+&lt;td&gt;337&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;🇫🇷 France&lt;/td&gt;
+&lt;td&gt;14393&lt;/td&gt;
+&lt;td&gt;221&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;🇮🇹 Italy&lt;/td&gt;
+&lt;td&gt;19899&lt;/td&gt;
+&lt;td&gt;329&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;🇳🇱 Netherlands&lt;/td&gt;
+&lt;td&gt;2823&lt;/td&gt;
+&lt;td&gt;165&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;🇪🇸 Spain&lt;/td&gt;
+&lt;td&gt;17489&lt;/td&gt;
+&lt;td&gt;374&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;🇸🇪 Sweden&lt;/td&gt;
+&lt;td&gt;919&lt;/td&gt;
+&lt;td&gt;91&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;🇬🇧 UK&lt;/td&gt;
+&lt;td&gt;10612&lt;/td&gt;
+&lt;td&gt;156&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;🇺🇸 USA&lt;/td&gt;
+&lt;td&gt;22115&lt;/td&gt;
+&lt;td&gt;67&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;These countries differ in many ways, but they all are classic liberal democracies. They all failed to keep people alive. As the death tolls are tallied we may witness far worse or better results. The present exercise cannot predict that future. We also cannot today clearly determine which statistical methods are best: should everyone who tests positive for COVID-19 and then dies be counted as a COVID-19 death? Many questions of this kind menace straightforward analysis. Amid the developing crisis, and without the benefit of hindsight, let us consider the kinds of regimes acclaimed as ‘positive’ examples—governments that keep people alive—with the data we do have:&lt;/p&gt;
+&lt;h3 id="singapore"&gt;🇸🇬 Singapore&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class="header"&gt;
+&lt;th&gt;Total Deaths&lt;/th&gt;
+&lt;th&gt;Deaths / 1M pop.&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;figure&gt;
+&lt;img src="singapore-chart.jpg" title="Singapore coronavirus chart" alt="" /&gt;&lt;figcaption&gt;Singapore coronavirus &lt;a href="https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Singapore"&gt;chart&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Singapore is &lt;a href="https://www.technologyreview.com/2020/03/12/905346/singapore-is-the-model-for-how-to-handle-the-coronavirus/"&gt;‘the model’&lt;/a&gt; to &lt;a href="https://www.latimes.com/world-nation/story/2020-03-11/a-singaporeans-view-of-the-coronavirus-its-surprising-to-see-the-u-s-so-messed-up"&gt;‘keep the coronavirus under control’&lt;/a&gt;, and they did it &lt;a href="https://www.nytimes.com/2020/03/13/opinion/coronavirus-best-response.html"&gt;‘without draconian measures’&lt;/a&gt;. The corporatist oligarchy &lt;a href="https://www.the-american-interest.com/2019/11/21/the-puzzle-of-singapore/"&gt;‘puzzles’&lt;/a&gt; liberal &lt;a href="https://harvardpolitics.com/world/singapores-stubborn-authoritarianism/"&gt;analysis&lt;/a&gt;. The entrenched one-party state deployed high and low tech population control &lt;a href="https://www.ft.com/content/ca4e0db0-6aaa-11ea-800d-da70cff6e4d3"&gt;measures&lt;/a&gt; early, and the international commercial hub has been spared the worst.&lt;/p&gt;
+&lt;h3 id="south-korea"&gt;🇰🇷 South Korea&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class="header"&gt;
+&lt;th&gt;Total Deaths&lt;/th&gt;
+&lt;th&gt;Deaths / 1M pop.&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;217&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;figure&gt;
+&lt;img src="south-korea-chart.png" alt="" /&gt;&lt;figcaption&gt;South Korea coronavirus &lt;a href="https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_South_Korea"&gt;chart&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;The protectorate of the United States is certainly counted as a liberal democracy, albeit &lt;a href="https://asia.nikkei.com/Spotlight/Asia-Insight/Asia-s-fragile-democracies-struggle-to-tame-illiberal-forces"&gt;‘fragile’&lt;/a&gt; and &lt;a href="https://www.brookings.edu/research/liberal-democracy-in-south-korea/"&gt;‘challenged’&lt;/a&gt;. But the &lt;a href="https://www.nytimes.com/2018/02/20/magazine/south-koreas-most-dangerous-enemy-demographics.html"&gt;ethnically&lt;/a&gt; &lt;a href="https://qz.com/1172515/living-in-south-korea-as-a-chinese-canadian-woman-is-a-lesson-in-the-complex-world-of-contradictory-privilege/"&gt;homogeneous&lt;/a&gt; republic effectively responded with &lt;a href="https://www.nature.com/articles/d41586-020-00740-y"&gt;soft&lt;/a&gt; and &lt;a href="https://www.nytimes.com/2020/03/22/health/coronavirus-restrictions-us.html"&gt;hard&lt;/a&gt; measures. The upcoming elections in South Korea will be an early sign of how the biological referendum effects elections.&lt;/p&gt;
+&lt;h3 id="china"&gt;🇨🇳 China&lt;/h3&gt;
+&lt;figure&gt;
+&lt;img src="china-chart.png" title="China coronavirus chart" alt="" /&gt;&lt;figcaption&gt;China coronavirus &lt;a href="https://en.wikipedia.org/wiki/2019%E2%80%9320_coronavirus_pandemic_in_mainland_China"&gt;chart&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class="header"&gt;
+&lt;th&gt;Total Deaths&lt;/th&gt;
+&lt;th&gt;Deaths / 1M pop.&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;3341&lt;/td&gt;
+&lt;td&gt;57&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The most controversial and contested case is of course the People’s Republic of China. Home of the infamous &lt;a href="https://www.youtube.com/watch?v=Je0_U2ym_r0"&gt;‘wet market’&lt;/a&gt; and the Wuhan &lt;a href="https://www.youtube.com/watch?v=gNFeo5oOuJA"&gt;lockdown&lt;/a&gt;, China has reported far fewer deaths than other countries. While tarnished as the source of the scourge that refused &lt;a href="https://eu.usatoday.com/story/news/world/2020/02/03/coronavirus-outbreak-china-says-us-spreading-fear/4643737002/"&gt;to see reason&lt;/a&gt;, China is &lt;a href="https://fortune.com/2020/02/28/china-coronavirus-response-global/"&gt;attempting&lt;/a&gt; to &lt;a href="https://www.nytimes.com/2020/02/28/world/asia/china-coronavirus-response-propaganda.html"&gt;position itself&lt;/a&gt; as a &lt;em&gt;leader&lt;/em&gt; on the virus. At the very least, the failure of the West will give Chinese leadership a pass. If the Chinese figures prove remotely accurate, the world will marvel that the first country affected emerged nowhere near the top of the body count&lt;/p&gt;
+&lt;h3 id="russia"&gt;🇷🇺 Russia&lt;/h3&gt;
+&lt;figure&gt;
+&lt;img src="russia-chart.png" title="Russia coronavirus chart" alt="" /&gt;&lt;figcaption&gt;Russia coronavirus &lt;a href="https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Russia"&gt;chart&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class="header"&gt;
+&lt;th&gt;Total Deaths&lt;/th&gt;
+&lt;th&gt;Deaths / 1M pop.&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;148&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Postliberal nationalism has emerged globally, encouraged by Russia’s example. But Vladimir Putin’s &lt;a href="https://www.axios.com/russia-syria-us-withdrawal-eee1959e-4549-4471-9cb5-68c54fc5fb08.html"&gt;victories&lt;/a&gt; &lt;a href="https://www.reuters.com/article/us-ukraine-crisis/putin-marks-victory-in-crimea-as-ukraine-violence-flares-idUSBREA400LI20140509"&gt;abroad&lt;/a&gt; are offset—if not erased—by longstanding &lt;a href="https://www.themoscowtimes.com/2020/03/09/russian-share-prices-collapse-ruble-and-oil-tumble-a69565"&gt;economic&lt;/a&gt; and &lt;a href="https://www.themoscowtimes.com/2019/06/21/roma-chemodanovka-ethnic-conflict-pogroms-russia-a66075"&gt;ethnic&lt;/a&gt; troubles at home. The populist &lt;a href="https://uk.reuters.com/article/uk-russia-putin-marriage/russian-constitution-must-define-marriage-as-heterosexual-putin-says-idUKKBN20P2Q8"&gt;social conservatism&lt;/a&gt; of Russia’s government echoed through their pandemic &lt;a href="https://www.cbc.ca/news/world/russia-hasn-t-had-any-new-coronavirus-cases-why-is-that-1.5479374"&gt;response&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“Put this on before you go inside, there might be Chinese in there,” he tells a family heading into a grocery store, before handing face masks to a mom and her kids.&lt;/p&gt;
+&lt;p&gt;Russia has adopted some of the world’s most controversial — many would say discriminatory — measures to combat the coronavirus, including policies specifically targeting the Chinese community.&lt;/p&gt;
+&lt;p&gt;Among them are patrols, such as the one Gorbunov is undertaking, in largely Chinese neighbourhoods.&lt;/p&gt;
+&lt;p&gt;“Well, we read the press and they write that the virus is most prominent among the Asian population,” says Gorbunov’s colleague Genady Kovalov. “The danger is real, that’s why we started the patrols.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.chathamhouse.org/expert/comment/covid-19-world-russia-sticks-international-distancing"&gt;‘Fortress Russia’&lt;/a&gt; seems to have avoided early infections by shutting the Asian frontier, only to later import the virus &lt;a href="https://edition.cnn.com/2020/03/21/europe/putin-coronavirus-russia-intl/index.html"&gt;from Italy&lt;/a&gt;. As with &lt;a href="https://thefederalist.com/2020/03/23/why-on-earth-should-anyone-believe-communist-chinas-coronavirus-statistics/"&gt;China&lt;/a&gt;, there have been &lt;a href="https://www.independent.co.uk/news/world/europe/coronavirus-russia-cases-pneumonia-deaths-putin-kremlin-fake-news-a9415771.html"&gt;accusations&lt;/a&gt; that the Kremlin tampers with official statistics. It remains to be seen whether such claims will affect public perception in either case. Russia could become a case study in failed quarantine if the European outbreak is not quickly contained.&lt;/p&gt;
+&lt;h3 id="counterexamples-and-counterarguments"&gt;Counterexamples and counterarguments&lt;/h3&gt;
+&lt;ol type="1"&gt;
+&lt;li&gt;What about Taiwan?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Of course, the cases of &lt;a href="https://www.reuters.com/article/us-health-coronavirus-brazil-idUSKCN21V149"&gt;Brazil&lt;/a&gt;, &lt;a href="https://edition.cnn.com/2020/03/23/asia/hong-kong-coronavirus-quarantine-intl-hnk/index.html"&gt;Hong Kong&lt;/a&gt;, and &lt;a href="https://www.latimes.com/world-nation/story/2020-02-25/how-iran-became-a-hot-zone-for-coronavirus-in-middle-east"&gt;Iran&lt;/a&gt; have been cited by liberal apologists as against that the obvious argument sketched so far. This objection fails to see past official ideology. Taiwan may be a friend of liberalism, but even &lt;a href="https://www.wired.com/story/taiwan-is-beating-the-coronavirus-can-the-us-do-the-same/"&gt;sympathetic descriptions&lt;/a&gt; make the island sound like a reactionary fantasy:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Because of the opposition of the People’s Republic of China, Taiwan is not a member of the United Nations or the World Health Organization, a fact that may paradoxically have contributed to Taiwanese faith in their own government, according to Patrick Tung, a native of Taiwan and a specialist in Song dynasty history. “The reality of being isolated from global organizations,” wrote Tung, “also makes Taiwanese very aware of the publicity of its success in handling a crisis like this. The more coverage from foreign media, the more people feel confident in government policy and social mobilization.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start="2" type="1"&gt;
+&lt;li&gt;The bad guys lie&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;As noted above, the argument that ‘all the statistics are fake’—without a credible counter-statistics—goes nowhere. Western media &lt;a href="https://nypost.com/2020/04/09/who-head-cries-racism-after-being-ripped-for-enabling-chinas-coronavirus-lies/"&gt;attacks&lt;/a&gt; on the WHO for alleged pro-Chinese bias similarly lack force. All these words may indeed mean nothing in a month if the public discovers some revelatory information. But at time of writing, appeals to suspicion are little more than noise.&lt;/p&gt;
+&lt;ol start="3" type="1"&gt;
+&lt;li&gt;This is just punditry&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;It’s impossible to escape making some assumptions about human nature, even if one insists it doesn’t exist. The figures, even if unreliable in detail, draw a clear line between those who have and have not competently responded to the coronavirus. The case made above is not backed by a rigorous model, but the reality it points to is not a matter of mere opinion. No reasonable observer can ignore the trends touched on here.&lt;/p&gt;
+&lt;p&gt;&lt;img src="empty-mall.jpg" title="A delivery worker wearing a face mask walks at a nearly empty shopping mall in Beijing on February 27.Nicolas Asfouri/AFP/Getty Images" /&gt;&lt;/p&gt;
+&lt;h2 id="after"&gt;After?&lt;/h2&gt;
+&lt;p&gt;The global rise of illiberal politics will only be accelerated by the coronavirus. The travel bans, lockdowns, unemployment, death toll, and economic crash won’t be quickly forgotten. Much of the mass policing will remain long after the last COVID-19 patient walks out of the hospital. There is no guarantee that the coronavirus will not recur seasonally, and emergency measures have been repeatedly extended already. The Western case for open borders was a tough sell before the pandemic. After—whatever that means—we will see increasing support for national sovereignty, border controls, and retreat from liberal-international institutions like the EU and the WHO. The virus will spur the movements behind Orbán, Brexit, and Trump. The international scene will continue to polarize. Tensions between the United States and China will continue to escalate. The crisis will split apart cases typically twinned: Hungary and Brazil seem to be headed down very different paths. The referendum will be decided by how competently power is applied. Conventional categories and abstract ideals blanche before death. And despite aggrieved anger, the reckoning will not come quickly. Elites will either successfully channel public outcry towards alien enemies or they will fall. Restoration of the &lt;em&gt;status quo ante&lt;/em&gt; is far from certain.&lt;/p&gt;
+&lt;/main&gt;
+    </content>
   </entry>
   <entry>
     <title>If you like your app, you can keep it!</title>
     <link href='https://hypomnema.net/if-you-like-your-app'/>
     <id>https://hypomnema.net/if-you-like-your-app</id>
-    <updated>2020-04-22T20:24:09Z</updated>
+    <updated>2020-05-10T15:14:32Z</updated>
     <summary>  Democracy is, by the nature of it, a self-canceling business; and it
   gives in the long run a net result of zero.</summary>
-    <content type='html' src='https://hypomnema.net/if-you-like-your-app'></content>
+    <content type='text/html'>
+      &lt;main&gt;
+&lt;h2 class='title'&gt;If you like your app, you can keep it!&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Democracy is, by the nature of it, a self-canceling business; and it gives in the long run a net result of zero.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;— Thomas Carlyle&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The deadly coronavirus pandemic is &lt;a href="/dead-reckoning"&gt;spurring global reaction&lt;/a&gt;. As the &lt;a href="https://archive.vn/TJ6w8"&gt;body count&lt;/a&gt; climbs, &lt;a href="https://archive.vn/mL4ys"&gt;sluggish&lt;/a&gt; Western governments are &lt;a href="https://archive.vn/lfcbX"&gt;hastily mobilizing&lt;/a&gt; their publics to &lt;a href="https://archive.vn/LhUj9"&gt;hurry up and wait&lt;/a&gt;. While unable to take the &lt;a href="https://archive.vn/hKTth"&gt;simple steps&lt;/a&gt; far ‘less developed’ nations took to &lt;a href="https://archive.vn/uhiG0"&gt;stave off the worst&lt;/a&gt;, the richest and most powerful societies on Earth now discuss how to best implement &lt;a href="https://archive.vn/mvebF"&gt;unprecedented&lt;/a&gt; &lt;a href="https://archive.vn/NtWF4"&gt;mass&lt;/a&gt; &lt;a href="https://archive.vn/2nVT8"&gt;surveillance&lt;/a&gt;. These same governments cannot provide &lt;a href="https://archive.vn/97LQY"&gt;medical supplies&lt;/a&gt; or &lt;a href="https://archive.vn/atW8A"&gt;protective equipment&lt;/a&gt; to their &lt;a href="https://archive.vn/GXx9X"&gt;contaminated&lt;/a&gt; hospitals &lt;em&gt;‘&lt;a href="https://archive.vn/yybYU"&gt;overflowing&lt;/a&gt; with bodies.’&lt;/em&gt;&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src="truck-morgue.jpg" title="Truck morgue" alt="" /&gt;&lt;figcaption&gt;A body is transferred to a refrigerated truck, which is serving as a temporary morgue. &lt;br&gt; Workers are constructing metal shelves to increase the truck’s storage capacity. | Patrick Schnell, M.D.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;The romance between &lt;a href="https://archive.vn/DBfLE"&gt;big tech&lt;/a&gt; and &lt;a href="https://archive.vn/vortJ"&gt;the healthcare industry&lt;/a&gt; is nothing new. And while &lt;a href="https://archive.vn/yhenE"&gt;Apple and Google&lt;/a&gt; &lt;a href="https://archive.is/P1mKb"&gt;working together&lt;/a&gt; to ship coronavirus-tracing to &lt;a href="https://archive.vn/DNKEI"&gt;billions&lt;/a&gt; has provoked &lt;a href="https://archive.vn/yhenE"&gt;public reflection&lt;/a&gt;, far &lt;a href="https://archive.vn/ywqvO"&gt;more&lt;/a&gt; is &lt;a href="https://archive.vn/0oLk6"&gt;underway&lt;/a&gt;. Buzzy new technologies from ‘&lt;a href="https://archive.vn/fogiM"&gt;the blockchain&lt;/a&gt;’ to ‘&lt;a href="https://archive.vn/d6o9V"&gt;artificial intelligence&lt;/a&gt;’ have never been more mainstream; their patrons never poised to reap greater rewards. Consider a &lt;a href="https://archive.vn/qck6U"&gt;typical case&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In the last week, staff at the Centers for Disease Control and Prevention (CDC) started logging into a new web app. It promises to help them watch where COVID-19 is spreading and checks how well equipped hospitals are to deal with the spike in cases of the fatal virus, according to two sources familiar with the work. According to those sources, it was built by Palantir, a $20 billion-valued big data company whose data harvesting work for the U.S. Immigration and Customs Enforcement agency has provoked criticism from human rights groups.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The uses of big &lt;del&gt;brother&lt;/del&gt; tech sprout like weeds:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://archive.vn/qTFNk"&gt;Doctors monitoring patients remotely&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://archive.vn/T9iFt"&gt;Bosses monitoring workers remotely&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://archive.vn/QE5mF"&gt;…and watching workers body temp with thermal cameras&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://archive.vn/bVTu5"&gt;Immunity passports to exempt from lockdowns&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://archive.vn/5YxJr"&gt;Facial recognition to enforce lockdowns&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://archive.vn/hAiEH"&gt;Tracing all known contacts of infected people&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://archive.vn/DbsOU"&gt;Reporting disobedient neighbors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://archive.vn/DlWo1"&gt;Drones to monitor and disinfect locked-down areas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://archive.vn/Ed7PB"&gt;Drones to chase down lockdown breakers&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Not to mention the increased role of &lt;a href="https://archive.vn/3ac38"&gt;consumer tech&lt;/a&gt; in &lt;a href="https://archive.vn/d73ZK"&gt;daily life&lt;/a&gt;. The very &lt;a href="https://archive.vn/2v39U"&gt;methods&lt;/a&gt; the liberal press &lt;a href="https://archive.vn/U3XWZ"&gt;routinely&lt;/a&gt; &lt;a href="https://archive.vn/d73ZK"&gt;decried&lt;/a&gt; abroad are now &lt;a href="https://archive.vn/wZVEl"&gt;applied&lt;/a&gt; by &lt;a href="https://archive.vn/sgXgS"&gt;liberal democracies&lt;/a&gt; &lt;a href="https://archive.vn/RzJby"&gt;themselves&lt;/a&gt;. While &lt;a href="https://archive.vn/tOVDU"&gt;some&lt;/a&gt; have raised &lt;a href="https://archive.vn/IIURY"&gt;concerns&lt;/a&gt;, the crisis speaks for itself. Major public figures from &lt;a href="https://archive.vn/t6E4L"&gt;Bill de Blasio&lt;/a&gt; to &lt;a href="https://archive.vn/RHL7b"&gt;Boris Johnson&lt;/a&gt; have publicly discredited themselves. And for every cynical, structural, or materialist explanation of this big data gold rush there are ten fitful and chaotic emotions driving governments’ behavior. The world is afraid. &lt;a href="https://archive.vn/4ThFe"&gt;Sirens&lt;/a&gt; are the cities’ nightly lullaby and &lt;a href="https://archive.vn/42fvq"&gt;refrigerated trucks&lt;/a&gt; cart out the daily dead in body bags—bags whose &lt;em&gt;&lt;a href="https://archive.vn/b0UZJ"&gt;stocks are running out&lt;/a&gt;&lt;/em&gt;. The coronavirus is a living nightmare, a mass house arrest, a gauntlet for millions. This leaves governments a single question: &lt;a href="https://archive.vn/9qFK7"&gt;how quickly can we get it done?&lt;/a&gt;&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src="matt-hancock.jpg" title="UK health secretary videolink" alt="" /&gt;&lt;figcaption&gt;UK Health Secretary Matt Hancock speaks via videolink | Jacob King / AP&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;France took playing catch-up seriously enough to &lt;a href="https://archive.vn/1UT5"&gt;punish Amazon&lt;/a&gt; for ignoring ‘its obligation to protect the security and health of its employees.’ Most liberal democracies however are utterly dependent on big tech: the UK’s ‘&lt;a href="https://archive.vn/SaPMp"&gt;unthinkable&lt;/a&gt;’ ask for access to Amazon’s ‘established delivery infrastructure’ was blandly typical. Institutional capacity has been drained from the West. Shortages of masks, beds, tests, etc. are all symptomatic of that siphoning. While &lt;a href="https://archive.vn/wESwQ"&gt;liberal journalists&lt;/a&gt; questioned Chinese hospital-building in February, by March Chinese students &lt;a href="https://archive.vn/RPsEt"&gt;were fleeing&lt;/a&gt; the sleepwalking West. Emmanuel Macron might &lt;a href="https://archive.vn/RbWRM"&gt;not like&lt;/a&gt; the argument, but he has no substantive response to &lt;a href="https://archive.vn/M843l"&gt;Bruno Maçães&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;What started as a catastrophe for China is shaping up to be a moment of strategic opportunity, a rare turning point in the flow of history. Suddenly, the protests in Hong Kong, carrying a mortal threat to political stability in the mainland, became a physical impossibility. More important, the pandemic set in motion a global competition, to contain the virus, for which China and the Chinese Communist Party seem uniquely prepared.&lt;/p&gt;
+&lt;p&gt;As the virus spread to the whole world, it became apparent that Western societies — Beijing’s true rivals — did not have the ability to quickly organize every citizen around a single goal. As opposed to China, which remains to a large extent a revolutionary society, their political systems were built for normal times. Chinese society is a mobilized army, which can quickly drop everything else and march in one direction.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It is this structural failure of liberal democracy—the lack of institutional capacity—that will thwart organized efforts to curb the virus. To be fair, Macron’s government was able to get &lt;a href="https://archive.vn/fnsP2"&gt;a permission slip digitized&lt;/a&gt; after only a few weeks of nationwide lockdown.&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src="wuhan-diggers.jpg" title="Construction begins in Wuhan" alt="" /&gt;&lt;figcaption&gt;Diggers begin constructing a new 1,000-bed hospital in Wuhan in record time. | Stringer / Getty Images&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;This deficit takes many forms, but for now let’s concentrate on why it blunts any possible cybernetic response, focusing on the example of proposed contact-tracing apps:&lt;/p&gt;
+&lt;ol type="1"&gt;
+&lt;li&gt;Opt-in&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;A &lt;a href="https://archive.vn/wb1jy"&gt;pliant press&lt;/a&gt; &lt;a href="https://archive.vn/qWWMZ"&gt;assures us&lt;/a&gt; that &lt;a href="https://archive.vn/B7uQg"&gt;our privacy&lt;/a&gt; and &lt;a href="https://archive.vn/GnS1L"&gt;security&lt;/a&gt; will not be at risk. Right or wrong, they have to make such promises. Simply keeping &lt;a href="https://archive.vn/UdpEm"&gt;folks at home&lt;/a&gt; has taken &lt;a href="https://archive.vn/JqXj5"&gt;absurd effort&lt;/a&gt;. Only buy-in from the public can get &lt;a href="https://archive.vn/Rut9e"&gt;enough users&lt;/a&gt; to make mass monitoring &lt;a href="https://archive.vn/cOGIb"&gt;worthwhile&lt;/a&gt;. Britain’s app targets &lt;a href="https://archive.vn/QUF8t"&gt;80% of smartphone users&lt;/a&gt;. Oft-lauded Singapore currently boasts about &lt;a href="https://archive.vn/i2Tjf"&gt;12% adoption&lt;/a&gt;. The many &lt;a href="https://archive.vn/szkc7"&gt;skeptics&lt;/a&gt; and even more unaware or lazy users will simply fail to use the app, thereby defeating it.&lt;/p&gt;
+&lt;ol start="2" type="1"&gt;
+&lt;li&gt;Apps alone&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Those &lt;a href="https://archive.vn/2mDej"&gt;implementing&lt;/a&gt; successful tracing applications understand the hard limits of the enterprise:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you ask me whether any Bluetooth contact tracing system deployed or under development, anywhere in the world, is ready to replace manual contact tracing, I will say without qualification that the answer is, No. Not now and, even with the benefit of AI/ML and — God forbid — blockchain 😂 (throw whatever buzzword you want), not for the foreseeable future.&lt;/p&gt;
+&lt;p&gt;There are critical factors (like ventilation — see below; update: or singing!) that a purely automated system will not have access to. &lt;span class="highlight"&gt; You cannot “big data” your way out of a “no data” situation. &lt;/span&gt; Period.&lt;/p&gt;
+&lt;p&gt;[…]&lt;/p&gt;
+&lt;p&gt;I received feedback from the chief medical officer of a 15,000-strong organisation, pointing to the Washington choir super-spreader event, and ongoing research into how the coronavirus spreads. In this case, a contact tracing app tuned to detect 2 metre proximity would not have flagged any encounters — but a human adjusting the sensitivity thresholds of an algorithm might. Without a human-in-the-loop, matching histories across cases to contribute new knowledge to the medical community’s understanding of how the coronavirus spreads, would not be possible.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Without &lt;a href="https://archive.vn/oFZp8"&gt;widespread&lt;/a&gt; and &lt;a href="https://archive.vn/3P4VV"&gt;consistent&lt;/a&gt; &lt;a href="https://archive.vn/lnK0E"&gt;testing&lt;/a&gt;, contact tracing apps are useless. Given that &lt;a href="https://archive.vn/5F1UD"&gt;testing shortages&lt;/a&gt; &lt;a href="https://archive.vn/wmvK6"&gt;are the&lt;/a&gt; &lt;a href="https://archive.vn/Gns19"&gt;norm&lt;/a&gt; across the Western world, there’s little cause for hope. Not to mention that governments get to play the neoliberals’ favorite game: &lt;a href="https://archive.vn/2pP4l"&gt;shop for healthcare products&lt;/a&gt;. Even better, it’s an app!&lt;/p&gt;
+&lt;ol start="3" type="1"&gt;
+&lt;li&gt;Walled gardens&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Intellectual property laws, just-in-time supply-chains, and proprietary technology bleed institutional capacity:&lt;/p&gt;
+&lt;blockquote class="twitter-tweet"&gt;
+&lt;p lang="en" dir="ltr"&gt;
+I had an email from someone who works in a virology testing lab, about why their lab is experiencing shortages of reagent. I found it really interesting and informative, so I thought I'd share it, in case you do to &lt;a href="https://t.co/Rp40F7kTHO"&gt;https://t.co/Rp40F7kTHO&lt;/a&gt; &lt;a href="https://t.co/Dajgae2h4z"&gt;pic.twitter.com/Dajgae2h4z&lt;/a&gt;
+&lt;/p&gt;
+— Tom Chivers (&lt;span class="citation" data-cites="TomChivers"&gt;@TomChivers&lt;/span&gt;) &lt;a href="https://twitter.com/TomChivers/status/1245724620810051584?ref_src=twsrc%5Etfw"&gt;April 2, 2020&lt;/a&gt;
+&lt;/blockquote&gt;
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+&lt;p&gt;Even &lt;a href="https://archive.vn/71aBs"&gt;within the walls&lt;/a&gt;, big tech companies struggle to support the anti-coronavirus campaign. Are they ready for even greater responsibility? Marketing around the ‘masters of the universe’ meets reality: Apple and Google are technically incapable of deploying their proposed apps to &lt;a href="https://archive.vn/ELAwY"&gt;two billion phones&lt;/a&gt;.&lt;/p&gt;
+&lt;ol start="4" type="1"&gt;
+&lt;li&gt;Unruly publics&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;America is proving increasingly &lt;a href="https://archive.vn/NqGKf"&gt;difficult&lt;/a&gt; to &lt;a href="https://archive.vn/RlBj6"&gt;govern&lt;/a&gt;. Protests—sometimes armed—have erupted from &lt;a href="https://archive.vn/jJxzW"&gt;New Jersey&lt;/a&gt; to &lt;a href="https://archive.vn/HuFSM"&gt;Washington state&lt;/a&gt;. It is painfully obvious that a population this restive after being politely asked to simply &lt;em&gt;do nothing&lt;/em&gt; is not going to rush out and sign up for some surveillance app. And for every gun nut in a pickup truck rolling coal past the statehouse, there are a thousand reasonable people sick of staying home.&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src="armed-lansing-protest.jpg" title="Armed protesters" alt="" /&gt;&lt;figcaption&gt;Armed conservative protesters rally at the state capitol in Lansing, Michigan on April 15, 2020. | Jeff Kowalsky&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Even in comparatively organized &lt;a href="https://archive.vn/hUCnm"&gt;South Korea&lt;/a&gt;, the apps in place are frustrating the public:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[A]ny person with a smartphone in South Korea - almost the entire population, given that nine out of 10 South Koreans have one - gets location-based emergency messages that alert them when they are near a confirmed case of the novel coronavirus, also known as COVID-19.&lt;/p&gt;
+&lt;p&gt;People get the messages automatically and are not allowed to opt out.&lt;/p&gt;
+&lt;p&gt;[…]&lt;/p&gt;
+&lt;p&gt;Lee Yeon-ha, a university student majoring in film and media arts, says the messages have become “very annoying.”&lt;/p&gt;
+&lt;p&gt;“I cannot disagree with the fact that it’s good for people to know if there are infected people visiting the same places that they might go to,” he said. “But I think the government is sending these messages too frequently … I know I stopped reading them.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This recalls the previous problem of ‘opt-in’ solutions, and highlights a new concern: how are everyday people supposed to make sense of all this data? Relying on the general population to do more than the most basic steps (like washing their hands) requires massive &lt;a href="https://archive.vn/deish"&gt;state&lt;/a&gt; &lt;a href="https://archive.vn/efncw"&gt;intervention&lt;/a&gt;. In the &lt;a href="https://archive.vn/YWZjO"&gt;individualist&lt;/a&gt; and &lt;a href="https://archive.vn/6clGb"&gt;fractured&lt;/a&gt; West, how is such a campaign supposed to work?&lt;/p&gt;
+&lt;ol start="5" type="1"&gt;
+&lt;li&gt;Incompetent governance&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The United States can &lt;a href="https://archive.vn/zqlou"&gt;barely&lt;/a&gt; &lt;a href="https://archive.vn/tUjgF"&gt;organize&lt;/a&gt; an &lt;a href="https://archive.vn/TxDF1"&gt;election&lt;/a&gt;. The country just witnessed the perils of &lt;a href="https://archive.vn/5l8ig"&gt;apps&lt;/a&gt; in public life thanks to the &lt;a href="https://archive.vn/4xWsz"&gt;Iowa caucus&lt;/a&gt;. Is the homebound republic ready to stake it’s future on digital &lt;a href="https://archive.vn/L3HVa"&gt;hanging chads&lt;/a&gt;? The ‘&lt;a href="https://archive.vn/kCjyC"&gt;tech-savvy&lt;/a&gt;’ Obama administration spent &lt;a href="https://archive.vn/1PDoV"&gt;$840 million&lt;/a&gt; on a broken website. It’s disputable whether calling Western governments ‘tech illiterate’ is &lt;a href="https://archive.vn/Q6WqU"&gt;understating the case&lt;/a&gt;. Liberal democracies’ pre-existing condition—&lt;a href="https://archive.vn/QiyKy"&gt;unfit leadership&lt;/a&gt;—is only aggravated by the pandemic.&lt;/p&gt;
+&lt;p&gt;And what good will an app do when the &lt;a href="https://archive.vn/E8JNZ"&gt;governors&lt;/a&gt; &lt;a href="https://archive.vn/ZAa47"&gt;themselves are&lt;/a&gt; &lt;a href="https://archive.vn/Pr91p"&gt;ungovernable&lt;/a&gt;?&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src="bolsonaro-truck.jpg" title="Bolsonaro joins protests against quarantine" alt="" /&gt;&lt;figcaption&gt;Jair Bolsonaro joins his supporters who were taking part in a motorcade to protest against quarantine and social distancing measures in Brasilia on April 19. | Sergio Lima / AFP via Getty Images&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;For now, the body count is far more worrying than the magic tech beans. Silicon Valley grifts just as presidents and desperate streamers do: the Apple-Google app alliance has been a marketing masterstroke, if little else. After this narrow examination of why yet another measure to save human life fails across the world’s richest and most powerful nations, we might consider the obvious question: can such evil endure forever?&lt;/p&gt;
+&lt;/main&gt;
+    </content>
   </entry>
 </feed>

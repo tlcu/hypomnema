@@ -7,6 +7,7 @@ title="$(grep title "$1" | cut -d ' ' -f 2-)"
 edited="$(awk '/edited:/ {print $2; exit}' "$1")"
 summary="$(pandoc "$1" -t plain | sed -e '/^$/,$d')"
 url="https://hypomnema.net/$filename"
+content="$(sed -n '/<main>/,/<\/main>/{s/&/\&amp;/g;s/</\&lt;/g;s/>/\&gt;/g;p;};' docs/"$filename".html)"
 
 mkdir -p .tmp
 
@@ -18,7 +19,9 @@ cat > .tmp/"$edited"-"$title"-entry.xml << EOF
     <id>$url</id>
     <updated>$today</updated>
     <summary>$summary</summary>
-    <content type='html' src='$url'></content>
+    <content type='text/html'>
+      $content
+    </content>
   </entry>
 EOF
 
